@@ -4,7 +4,7 @@ function CustomButton({ text, onPress }: Readonly<CustomButtonProps>) {
   return (
     <button
       type="button"
-      className="rounded-md bg-blue-300 py-2 text-white my-4"
+      className="flex flex-1 rounded-3xl w-[100%] justify-center items-center font-semibold bg-purple-500 py-3 text-white text-lg px-3"
       onClick={onPress}
     >
       {text}
