@@ -3,46 +3,9 @@ import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
 import { CustomRouter } from './RootRoutes';
 import SignIn from '../Views/SignIn';
 import LandingPage from '../Views/LandingPage';
-import AddPassword from '../Views/AddPassword';
-import AddEmail from '../Views/AddEmail';
+import { ONBOARDING_ROUTES } from './OnboardingRoutes';
 import Create from '../Views/Create';
-import AddFirstName from '../Views/AddFirstName';
-import AddLastName from '../Views/AddLastName';
 
-export const ONBOARDING_ROUTES = [
-  {
-    path: `${ROUTES_CONFIG.EMAIL.path}`,
-    element: <AddEmail />,
-  },
-  {
-    path: `${ROUTES_CONFIG.PASSWORD.path}`,
-    element: <AddPassword />,
-  },
-  {
-    path: `${ROUTES_CONFIG.FIRST_NAME.path}`,
-    element: <AddFirstName />,
-  },
-  {
-    path: `${ROUTES_CONFIG.LAST_NAME.path}`,
-    element: <AddLastName />,
-  },
-  {
-    path: `${ROUTES_CONFIG.PHOTO.path}`,
-    element: '<AddPassword />',
-  },
-  {
-    path: `${ROUTES_CONFIG.PREFERENCES.path}`,
-    element: '<AddPreferences />',
-  },
-  {
-    path: `${ROUTES_CONFIG.INTERESTS.path}`,
-    element: '<AddInterests />',
-  },
-  {
-    path: `${ROUTES_CONFIG.GENDER.path}`,
-    element: '<AddGender />',
-  },
-];
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
   {

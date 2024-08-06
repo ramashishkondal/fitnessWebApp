@@ -28,7 +28,7 @@ function LandingPage() {
       <div className="max-w-[35%] w-full mt-4">
         <button
           type="button"
-          className="flex flex-1 rounded-full w-[100%] justify-center items-center font-semibold bg-purple-500 py-4 text-white text-2xl px-3"
+          className="flex flex-1 rounded-full w-[100%] justify-center items-center font-semibold bg-customPurple py-4 text-white text-2xl px-3"
           onClick={goToAddEmail}
         >
           Get Started
@@ -38,7 +38,7 @@ function LandingPage() {
         {STRING.LANDING_PAGE.alreadyHaveAnAccount}
         <Link
           to={ROUTES_CONFIG.SIGN_IN.path}
-          className=" text-purple-400 font-medium ml-2"
+          className=" text-customPurple font-medium ml-2"
         >
           {STRING.LANDING_PAGE.signInInstead}
         </Link>

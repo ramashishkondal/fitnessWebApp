@@ -18,7 +18,7 @@ function AddPassword() {
   // redux use
   const dispatch = useDispatch();
   const handleEmailSubmit = () => {
-    if (!isValidPassword.lengthCheck(password)) {
+    if (!password || !isValidPassword.lengthCheck(password)) {
       return;
     }
     dispatch(updateUserData({ password }));
@@ -42,11 +42,11 @@ function AddPassword() {
             className={clsx(
               'w-4 h-4 rounded-[4px]  mx-1',
               isValidPassword.lengthCheck(password)
-                ? 'bg-purple-400'
-                : 'bg-slate-400'
+                ? 'bg-customPurple'
+                : 'bg-customGray300'
             )}
           />
-          <p className="text-gray-600 ">Minimum 6 characters</p>
+          <p className="text-gray-600 ml-1">Minimum 6 characters</p>
         </div>
         <div className="mt-32">
           <CustomButton text="Continue" onPress={handleEmailSubmit} />

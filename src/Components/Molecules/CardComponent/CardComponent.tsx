@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 import { LeftArrow } from '../../../Shared/Constants';
 import { CardComponentProps } from './types';
 import usePreviousLocation from '../../../hooks/usePreviousLocation';
-import { ONBOARDING_ROUTES } from '../../../Routes/PublicRoutes';
+import { ONBOARDING_ROUTES } from '../../../Routes/OnboardingRoutes';
 
 function CardComponent({ children }: Readonly<CardComponentProps>) {
   const navigateBack = usePreviousLocation();
@@ -24,12 +25,17 @@ function CardComponent({ children }: Readonly<CardComponentProps>) {
         <div className="w-full bg-gray-300 h-2 rounded-t-3xl">
           <div
             style={{ width: `${percentage}%`, transition: 'width 0.5s ease' }}
-            className="bg-purple-400 h-2 rounded-tl-2xl "
+            className={clsx(
+              'bg-customPurple h-2 ',
+              percentage === 100 ? 'rounded-t-2xl' : 'rounded-tl-2xl'
+            )}
           />
         </div>
-        <button type="button" onClick={navigateBack}>
-          <img src={LeftArrow} alt="Back button" className="size-6 m-6" />
-        </button>
+        {percentage === 100 ? null : (
+          <button type="button" onClick={navigateBack}>
+            <img src={LeftArrow} alt="Back button" className="size-6 m-6" />
+          </button>
+        )}
         {children}
       </div>
     </div>

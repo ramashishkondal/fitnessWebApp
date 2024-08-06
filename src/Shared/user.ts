@@ -7,9 +7,9 @@ export type User = {
   email: string;
   finger: boolean;
   photo: string;
-  gender: 'male' | 'female' | null;
+  gender: 'Male' | 'Female' | null;
   preferences: Array<{ title: string; selected: boolean }>;
-  interests: Array<{ title: string; selected: boolean }>;
+  interests: Array<{ title: string; selected: boolean; icon: string }>;
   healthData: Array<HealthData>;
   storiesWatched: Array<string>;
   notifications: NotificationsData;
