@@ -1,4 +1,5 @@
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
 import {
   FacebookLogo,
   Fashion,
@@ -13,13 +14,23 @@ import {
 import { auth } from '../../../Utils/firebaseConfig';
 import { createUser } from '../../../Utils/firebaseStore';
 import { extractAlphabets } from '../../../Utils/commonUtils';
+import { updateUserData } from '../../../Store/User';
 
 function SocialLogins() {
+  // redux use
+  const dispatch = useDispatch();
+
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     const {
       user: { displayName, uid, email, photoURL },
     } = await signInWithPopup(auth, provider);
+    dispatch(updateUserData({ id: uid }));
+
+    console.log('====================================');
+    console.log('id is ', uid);
+    console.log('====================================');
+
     if (email && uid) {
       createUser(uid, {
         email,

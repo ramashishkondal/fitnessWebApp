@@ -10,7 +10,9 @@ function RootRouter() {
   const authenticated = useRoutes(authenticatedRoutes);
   const { id } = useSelector((state: RootState) => state.user);
   const isAuthenticated = !!id;
-
+  console.log('====================================');
+  console.log('id in this i s', id);
+  console.log('====================================');
   return (
     <>
       <DocumentTitle isAuthenticated={isAuthenticated} />

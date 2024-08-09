@@ -132,7 +132,7 @@ export { STRING };
 
 const ROUTES = {
   LANDING_PAGE: '/',
-  HOME: '/home',
+  HOME: '/',
   SIGN_IN: '/sign-in',
   REGISTER: '/create',
   EMAIL: '/create/add-email',
