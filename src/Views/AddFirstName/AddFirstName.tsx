@@ -53,7 +53,7 @@ function AddFirstName() {
         {STRING.ADD_FIRST_NAME.heading}
       </p>
       <div className="flex flex-1 flex-col justify-center w-[60%]">
-        <div>
+        <div className="rounded-lg border border-gray-300 my-2">
           <CustomTextInput
             placeholder={STRING.ADD_FIRST_NAME.firstNamePlaceholder}
             value={firstName}

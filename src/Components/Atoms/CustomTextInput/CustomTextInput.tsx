@@ -17,7 +17,7 @@ function CustomTextInput({
       onClick={onClick}
       onBlur={onBlur}
       maxLength={maxLength}
-      className="p-3 bg-white my-2 placeholder:text-gray-500 font-light rounded-lg w-[100%] border border-gray-300 py-3"
+      className="p-3 bg-white placeholder:text-gray-500 font-light w-[100%] py-2 focus:outline-none my-1"
       onSubmit={(e) => {
         e.preventDefault();
       }}

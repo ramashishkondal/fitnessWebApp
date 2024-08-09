@@ -28,7 +28,7 @@ function AddPassword() {
     <div className="flex flex-1 items-center flex-col justify-center self-center mb-16">
       <p className="text-3xl font-medium mb-6">Now lets setup your password</p>
       <div className="flex flex-1 flex-col justify-center w-[60%]">
-        <div>
+        <div className="rounded-lg border border-gray-300 my-2">
           <CustomTextInput
             placeholder="Enter your Password"
             value={password}

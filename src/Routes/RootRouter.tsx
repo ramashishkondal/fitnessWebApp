@@ -8,14 +8,14 @@ import type { RootState } from '../Store';
 function RootRouter() {
   const guest = useRoutes(guestRoutes);
   const authenticated = useRoutes(authenticatedRoutes);
-  const token = useSelector((state: RootState) => state.common.token);
-  const isAuthenticated = !!token;
+  const { id } = useSelector((state: RootState) => state.user);
+  const isAuthenticated = !!id;
 
   return (
     <>
       <DocumentTitle isAuthenticated={isAuthenticated} />
       <AppLayout isAuthenticated={isAuthenticated}>
-        {token ? authenticated : guest}
+        {id ? authenticated : guest}
       </AppLayout>
     </>
   );

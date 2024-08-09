@@ -9,7 +9,6 @@ import avatar_8 from '../assets/images/Avatars/avatar_8.jpg';
 
 export { default as AppLogo } from '../assets/svgs/logoMain.svg';
 export { default as ReactLogo } from '../assets/svgs/react.svg';
-export { default as FacebookLogo } from '../assets/svgs/facebookLogo.svg';
 export { default as GetItOnAppStore } from '../assets/svgs/getItOnAppStore.svg';
 export { default as DrawerIcon } from '../assets/svgs/drawerIcon.svg';
 export { default as LeftArrow } from '../assets/svgs/leftArrow.svg';
@@ -17,6 +16,8 @@ export { default as Male } from '../assets/svgs/male.svg';
 export { default as Female } from '../assets/svgs/female.svg';
 export { default as Close } from '../assets/svgs/close.svg';
 export { default as DoubleArrows } from '../assets/svgs/doubleArrow.svg';
+export { default as GoogleLogo } from '../assets/svgs/googleLogo.svg';
+export { default as FacebookLogo } from '../assets/svgs/facebookLogo.svg';
 
 // interests
 export { default as Fashion } from '../assets/svgs/Interests/Fashion.svg';
@@ -130,7 +131,8 @@ const STRING = {
 export { STRING };
 
 const ROUTES = {
-  HOMEPAGE: '/',
+  LANDING_PAGE: '/',
+  HOME: '/home',
   SIGN_IN: '/sign-in',
   REGISTER: '/create',
   EMAIL: '/create/add-email',
@@ -146,14 +148,18 @@ const ROUTES = {
 };
 
 const WILDCARD_ROUTES = {
-  PUBLIC: ROUTES.HOMEPAGE,
+  PUBLIC: ROUTES.LANDING_PAGE,
   PRIVATE: ROUTES.SIGN_IN,
 };
 
 const ROUTES_CONFIG = {
-  HOMEPAGE: {
-    path: ROUTES.HOMEPAGE,
+  HOME: {
+    path: ROUTES.HOME,
     title: 'HOME',
+  },
+  LANDING_PAGE: {
+    path: ROUTES.LANDING_PAGE,
+    title: 'Landing Page',
   },
   EMAIL: {
     path: ROUTES.EMAIL,

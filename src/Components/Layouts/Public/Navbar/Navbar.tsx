@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <header className="border flex rounded-md px-3 py-2 justify-between items-center">
       <Link
-        to={ROUTES_CONFIG.HOMEPAGE.path}
+        to={ROUTES_CONFIG.LANDING_PAGE.path}
         className="flex content-center items-center ml-7"
       >
         <img src={AppLogo} alt="App Logo" className="size-6" />

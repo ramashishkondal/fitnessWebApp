@@ -35,7 +35,7 @@ function AddEmail() {
         {STRING.ADD_LAST_NAME.heading}
       </p>
       <div className="flex flex-1 flex-col justify-center w-[60%]">
-        <div>
+        <div className="rounded-lg border border-gray-300 my-2">
           <CustomTextInput
             placeholder={STRING.ADD_LAST_NAME.lastNamePlaceholder}
             value={lastName}

@@ -9,9 +9,9 @@ import Create from '../Views/Create';
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
   {
-    path: ROUTES_CONFIG.HOMEPAGE.path,
+    path: ROUTES_CONFIG.LANDING_PAGE.path,
     element: <LandingPage />,
-    title: ROUTES_CONFIG.HOMEPAGE.title,
+    title: ROUTES_CONFIG.LANDING_PAGE.title,
   },
   {
     path: `${ROUTES_CONFIG.SIGN_IN.path}`,
