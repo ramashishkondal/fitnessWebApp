@@ -6,6 +6,7 @@ import avatar_5 from '../assets/images/Avatars/avatar_5.jpg';
 import avatar_6 from '../assets/images/Avatars/avatar_6.jpg';
 import avatar_7 from '../assets/images/Avatars/avatar_7.jpg';
 import avatar_8 from '../assets/images/Avatars/avatar_8.jpg';
+import { Meal } from '../Store/MealData';
 
 export { default as AppLogo } from '../assets/svgs/logoMain.svg';
 export { default as ReactLogo } from '../assets/svgs/react.svg';
@@ -18,6 +19,8 @@ export { default as Close } from '../assets/svgs/close.svg';
 export { default as DoubleArrows } from '../assets/svgs/doubleArrow.svg';
 export { default as GoogleLogo } from '../assets/svgs/googleLogo.svg';
 export { default as FacebookLogo } from '../assets/svgs/facebookLogo.svg';
+export { default as glassWater } from '../assets/svgs/glassWater.svg';
+export { default as glassWaterEmpty } from '../assets/svgs/glassWaterEmpty.svg';
 
 // interests
 export { default as Fashion } from '../assets/svgs/Interests/Fashion.svg';
@@ -133,6 +136,8 @@ export { STRING };
 const ROUTES = {
   LANDING_PAGE: '/',
   HOME: '/',
+  SETTINGS: '/settings',
+  COMMUNITY: '/community',
   SIGN_IN: '/sign-in',
   REGISTER: '/create',
   EMAIL: '/create/add-email',
@@ -149,13 +154,21 @@ const ROUTES = {
 
 const WILDCARD_ROUTES = {
   PUBLIC: ROUTES.LANDING_PAGE,
-  PRIVATE: ROUTES.SIGN_IN,
+  PRIVATE: ROUTES.HOME,
 };
 
 const ROUTES_CONFIG = {
   HOME: {
     path: ROUTES.HOME,
     title: 'HOME',
+  },
+  COMMUNITY: {
+    path: ROUTES.COMMUNITY,
+    title: 'COMMUNITY',
+  },
+  SETTINGS: {
+    path: ROUTES.SETTINGS,
+    title: 'SETTINGS',
   },
   LANDING_PAGE: {
     path: ROUTES.LANDING_PAGE,
@@ -229,5 +242,272 @@ export const COLORS = {
     LIGHT_GREY_2: '#F1EFFA',
   },
 };
+
+export const foodData: Array<Omit<Meal, 'id'>> = [
+  {
+    name: 'Apple',
+    carbs: 25,
+    fat: 0.3,
+    protein: 0.5,
+    calories: 95,
+    serving_size_g: 182,
+  },
+  {
+    name: 'Banana',
+    carbs: 27,
+    fat: 0.3,
+    protein: 1.3,
+    calories: 105,
+    serving_size_g: 118,
+  },
+  {
+    name: 'Chicken Breast',
+    carbs: 0,
+    fat: 3.6,
+    protein: 31,
+    calories: 165,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Broccoli',
+    carbs: 6,
+    fat: 0.3,
+    protein: 2.6,
+    calories: 55,
+    serving_size_g: 91,
+  },
+  {
+    name: 'Almonds',
+    carbs: 6,
+    fat: 14,
+    protein: 6,
+    calories: 164,
+    serving_size_g: 28,
+  },
+  {
+    name: 'Salmon',
+    carbs: 0,
+    fat: 13,
+    protein: 20,
+    calories: 208,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Oatmeal',
+    carbs: 27,
+    fat: 3,
+    protein: 5,
+    calories: 154,
+    serving_size_g: 40,
+  },
+  {
+    name: 'Egg',
+    carbs: 1.1,
+    fat: 5,
+    protein: 6,
+    calories: 78,
+    serving_size_g: 50,
+  },
+  {
+    name: 'Greek Yogurt',
+    carbs: 4,
+    fat: 0.4,
+    protein: 10,
+    calories: 59,
+    serving_size_g: 170,
+  },
+  {
+    name: 'Avocado',
+    carbs: 12,
+    fat: 15,
+    protein: 2,
+    calories: 160,
+    serving_size_g: 150,
+  },
+  {
+    name: 'Sweet Potato',
+    carbs: 27,
+    fat: 0.1,
+    protein: 2,
+    calories: 112,
+    serving_size_g: 130,
+  },
+  {
+    name: 'Brown Rice',
+    carbs: 45,
+    fat: 1.5,
+    protein: 5,
+    calories: 216,
+    serving_size_g: 195,
+  },
+  {
+    name: 'Quinoa',
+    carbs: 39,
+    fat: 3.5,
+    protein: 8,
+    calories: 222,
+    serving_size_g: 185,
+  },
+  {
+    name: 'Whole Wheat Bread',
+    carbs: 12,
+    fat: 1,
+    protein: 3,
+    calories: 69,
+    serving_size_g: 28,
+  },
+  {
+    name: 'Black Beans',
+    carbs: 40,
+    fat: 0.9,
+    protein: 14,
+    calories: 227,
+    serving_size_g: 172,
+  },
+  {
+    name: 'Lentils',
+    carbs: 40,
+    fat: 0.8,
+    protein: 18,
+    calories: 230,
+    serving_size_g: 198,
+  },
+  {
+    name: 'Pasta',
+    carbs: 31,
+    fat: 1.3,
+    protein: 6,
+    calories: 157,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Corn',
+    carbs: 19,
+    fat: 1.5,
+    protein: 3.2,
+    calories: 86,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Potato',
+    carbs: 17,
+    fat: 0.1,
+    protein: 2,
+    calories: 77,
+    serving_size_g: 100,
+  },
+  {
+    name: 'White Rice',
+    carbs: 28,
+    fat: 0.3,
+    protein: 2.7,
+    calories: 130,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Barley',
+    carbs: 44,
+    fat: 0.4,
+    protein: 4.4,
+    calories: 193,
+    serving_size_g: 157,
+  },
+  {
+    name: 'Chickpeas',
+    carbs: 27,
+    fat: 2.6,
+    protein: 14.5,
+    calories: 164,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Peas',
+    carbs: 14,
+    fat: 0.4,
+    protein: 5.4,
+    calories: 81,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Butternut Squash',
+    carbs: 12,
+    fat: 0.1,
+    protein: 1,
+    calories: 45,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Pumpkin',
+    carbs: 7,
+    fat: 0.1,
+    protein: 1,
+    calories: 26,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Dates',
+    carbs: 75,
+    fat: 0.2,
+    protein: 2,
+    calories: 282,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Honey',
+    carbs: 82,
+    fat: 0,
+    protein: 0.3,
+    calories: 304,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Raisins',
+    carbs: 79,
+    fat: 0.5,
+    protein: 3.1,
+    calories: 299,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Mango',
+    carbs: 15,
+    fat: 0.4,
+    protein: 0.8,
+    calories: 60,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Carrots',
+    carbs: 10,
+    fat: 0.2,
+    protein: 0.9,
+    calories: 41,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Beets',
+    carbs: 10,
+    fat: 0.2,
+    protein: 1.6,
+    calories: 43,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Couscous',
+    carbs: 23,
+    fat: 0.2,
+    protein: 3.8,
+    calories: 112,
+    serving_size_g: 100,
+  },
+  {
+    name: 'Kidney Beans',
+    carbs: 22,
+    fat: 0.5,
+    protein: 8.7,
+    calories: 127,
+    serving_size_g: 100,
+  },
+];
 
 export { ROUTES, WILDCARD_ROUTES, ROUTES_CONFIG };

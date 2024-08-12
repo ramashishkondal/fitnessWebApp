@@ -1,22 +1,26 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 import GenderCardComponent from '../../Components/Molecules/GenderCardComponent';
 import { Female, Male, ROUTES_CONFIG, STRING } from '../../Shared/Constants';
 import CustomButton from '../../Components/Atoms/CustomButton';
 import { RootState } from '../../Store';
 import { updateUserData } from '../../Store/User';
+import { auth, storage } from '../../Utils/firebaseConfig';
+import { createUser } from '../../Utils/firebaseStore';
 
 function AddGender() {
   // redux use
   const dispatch = useDispatch();
-  const { gender: userGender } = useSelector((state: RootState) => state.user);
+  const { user } = useSelector((state: RootState) => state);
 
   // state use
   const [selectedGender, setSelectedGender] = useState<
     'Male' | 'Female' | null
-  >(userGender);
+  >(user.gender);
 
   // navigate use
   const navigate = useNavigate();
@@ -26,12 +30,38 @@ function AddGender() {
     setSelectedGender(() => gender);
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (selectedGender === null) {
       toast('Please select your gender.');
       return;
     }
     dispatch(updateUserData({ gender: selectedGender }));
+    const {
+      user: { uid },
+    } = await createUserWithEmailAndPassword(auth, user.email, user.password!);
+
+    let url = '';
+    if (/avatar+/.test(user.photo)) {
+      const reference = ref(storage, `media/Avatars/${user.photo}.jpg`);
+      url = await getDownloadURL(reference);
+    } else {
+      const reference = ref(storage, `media/profilePictures/${uid}/photo`);
+
+      await uploadString(reference, user.photo!);
+      url = await getDownloadURL(reference);
+    }
+
+    await createUser(uid, {
+      ...user,
+      id: uid,
+      photo: url,
+      finger: false,
+      gender: selectedGender,
+      healthData: [],
+      notifications: [],
+      storiesWatched: [],
+    });
+
     navigate(ROUTES_CONFIG.DETAILS_COMPLETED.path);
   };
 

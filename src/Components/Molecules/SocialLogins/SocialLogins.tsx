@@ -27,10 +27,6 @@ function SocialLogins() {
     } = await signInWithPopup(auth, provider);
     dispatch(updateUserData({ id: uid }));
 
-    console.log('====================================');
-    console.log('id is ', uid);
-    console.log('====================================');
-
     if (email && uid) {
       createUser(uid, {
         email,

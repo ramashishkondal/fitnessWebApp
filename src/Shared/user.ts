@@ -53,3 +53,14 @@ export type Comment = {
   comment: string;
   createdOn: Timestamp;
 };
+
+export type UserFromFirebaseDb = Omit<
+  Omit<User, 'createdOn'>,
+  'notifications'
+> & {
+  createdOn: Timestamp;
+  notifications: Array<NotificationDataFirebaseDB>;
+};
+export type NotificationDataFirebaseDB = Omit<NotificationData, 'createdOn'> & {
+  createdOn: Timestamp;
+};

@@ -89,22 +89,7 @@ export const currentUserSlice = createSlice({
       return { ...state, ...action.payload };
     },
     resetUserData: () => {
-      return {
-        id: null,
-        firstName: '',
-        lastName: '',
-        email: '',
-        finger: false,
-        gender: null,
-        interests: [],
-        photo: '',
-        preferences: [],
-        password: null,
-        healthData: [],
-        notifications: [],
-        storiesWatched: [],
-        createdOn: '',
-      };
+      return initialState;
     },
   },
 });
