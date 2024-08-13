@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import GlassWater from '../../Atoms/GlassWater/GlassWater';
 import { RootState } from '../../../Store';
 import { updateWaterIntake } from '../../../Utils/firebaseStore';
@@ -37,7 +38,7 @@ function WaterIntake() {
       <div className="flex border">
         {glasses.map((val, index) => (
           <GlassWater
-            key={index}
+            key={uuidv4()}
             isFilled={val}
             handlePressFill={() => handleGlassDrank(index)}
             handlePressDelete={() => handleGlassEmpty(index)}

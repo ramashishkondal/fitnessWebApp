@@ -19,8 +19,13 @@ export { default as Close } from '../assets/svgs/close.svg';
 export { default as DoubleArrows } from '../assets/svgs/doubleArrow.svg';
 export { default as GoogleLogo } from '../assets/svgs/googleLogo.svg';
 export { default as FacebookLogo } from '../assets/svgs/facebookLogo.svg';
-export { default as glassWater } from '../assets/svgs/glassWater.svg';
-export { default as glassWaterEmpty } from '../assets/svgs/glassWaterEmpty.svg';
+export { default as GlassWaterFull } from '../assets/svgs/glassWater.svg';
+export { default as GlassWaterEmpty } from '../assets/svgs/glassWaterEmpty.svg';
+export { default as Plus } from '../assets/svgs/plus.svg';
+export { default as HeartLiked } from '../assets/svgs/heartLiked.svg';
+export { default as HeartUnLiked } from '../assets/svgs/heartUnLiked.svg';
+export { default as CommentDialog } from '../assets/svgs/comment.svg';
+export { default as PostSign } from '../assets/svgs/postSign.svg';
 
 // interests
 export { default as Fashion } from '../assets/svgs/Interests/Fashion.svg';
@@ -36,6 +41,7 @@ export { default as Vegan } from '../assets/svgs/Interests/vegan.svg';
 
 export { default as LandingPageImage } from '../assets/images/landingPageImage.jpeg';
 export { default as Check } from '../assets/images/check.png';
+export { default as DefaultUser } from '../assets/images/defaultUser.jpeg';
 
 export const AVATARS = [
   {

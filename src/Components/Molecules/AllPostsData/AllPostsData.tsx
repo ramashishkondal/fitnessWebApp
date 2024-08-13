@@ -1,30 +1,40 @@
-// import { useEffect } from 'react';
-// import { Post } from '../../../Shared/user';
-// import { db, firebaseDB } from '../../../Utils/firebaseConfig';
-// import { doc, onSnapshot, orderBy } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { db, firebaseDB } from '../../../Utils/firebaseConfig';
+import { Post } from '../../../Shared/user';
+import UserPost from '../UserPost';
 
 function AllPostsData() {
+  // state use
+  const [posts, setPosts] = useState<Post[]>([]);
+
   // effect use
-  //   useEffect(() => {
-  //     const postsDataDoc = doc(db, firebaseDB.collections.posts);
-  //     const unsubscribe = onSnapshot(postsDataDoc, (snapshot) => {
-  //       snapshot.data();
-  //       orderBy('createdOn', 'desc');
-  //     });
+  useEffect(() => {
+    // Create a Firestore query
+    const q = query(
+      collection(db, firebaseDB.collections.posts),
+      orderBy('createdOn', 'desc')
+    );
 
-  //     const unsubscribe = firestore()
-  //       .collection(firebaseDB.collections.posts)
-  //       .orderBy('createdOn', 'desc')
+    // Set up the onSnapshot listener
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const data = snapshot.docs.map((doc) => doc.data()) as Post[];
+      setPosts(data);
+    });
 
-  //       .onSnapshot((snapshot) => {
-  //         const data = snapshot.docs;
-  //         const x = data.map((val) => val.data()) as Post[];
-  //         setPostsData(x);
-  //       });
+    // Cleanup the listener on unmount
+    return () => unsubscribe();
+  }, []);
 
-  //     return () => unsubscribe();
-  //   }, []);
-  return <div />;
+  // console.log('posts data', posts);
+
+  return (
+    <div>
+      {posts.map((val) => (
+        <UserPost Post={val} key={val.postId} />
+      ))}
+    </div>
+  );
 }
 
 export default AllPostsData;

@@ -42,13 +42,17 @@ export const currentUserSlice = createSlice({
     resetMealData: () => {
       return initialState;
     },
-    resetMealDataItems: (state, action: PayloadAction<Partial<DailyMeals>>) => {
+    resetMealDataItemsTo: (
+      state,
+      action: PayloadAction<Partial<DailyMeals>>
+    ) => {
       return { ...state, ...action.payload };
     },
   },
 });
 
 const { actions, reducer } = currentUserSlice;
-export const { resetMealData, updateAllMealData, resetMealDataItems } = actions;
+export const { resetMealData, updateAllMealData, resetMealDataItemsTo } =
+  actions;
 
 export default reducer;

@@ -13,7 +13,7 @@ function Drawer() {
       await auth.signOut();
       dispatch(updateUserData({ id: null }));
     } catch (error) {
-      console.log('failed loggin out ', error);
+      // console.log('failed loggin out ', error);
     }
   };
 
@@ -25,7 +25,7 @@ function Drawer() {
   );
 
   return (
-    <div className="bg-customGray300 w-60 flex flex-col min-h-screen">
+    <div className="bg-customGray300 w-60 flex flex-col h-screen overflow-y-hidden">
       <Link
         to={ROUTES_CONFIG.HOME.path}
         className={`flex justify-center ${

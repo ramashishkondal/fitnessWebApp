@@ -8,7 +8,7 @@ import CustomModal from '../../Components/Molecules/CustomModal';
 import WaterIntake from '../../Components/Molecules/WaterIntake';
 import { updateHealthData } from '../../Store/Health';
 import { db, firebaseDB } from '../../Utils/firebaseConfig';
-import { resetMealDataItems } from '../../Store/MealData';
+import { resetMealDataItemsTo } from '../../Store/MealData';
 
 function Home() {
   // state use
@@ -75,7 +75,7 @@ function Home() {
       if (!dailyMealsDataFromFirebase) {
         return;
       }
-      dispatch(resetMealDataItems(dailyMealsDataFromFirebase));
+      dispatch(resetMealDataItemsTo(dailyMealsDataFromFirebase));
     });
 
     return () => {
@@ -93,7 +93,7 @@ function Home() {
           <img
             src={photo}
             alt="profile"
-            className="size-24 rounded-full m-4 object-none shadow-lg "
+            className="size-24 rounded-full m-4 object-cover shadow-lg "
           />
         </button>
       </div>
@@ -107,7 +107,6 @@ function Home() {
         <div className="border flex flex-row justify-evenly ">
           <ReactApexChart
             options={{
-              series: [44, 55, 67, 83],
               chart: {
                 height: 350,
                 type: 'radialBar',
@@ -124,18 +123,18 @@ function Home() {
                     },
                     total: {
                       show: true,
-                      label: 'Total',
-                      formatter: function (w) {
+                      label: 'Total Calories',
+                      formatter: () => {
                         // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                        return 249;
+                        return '249';
                       },
                     },
                   },
                 },
               },
-              labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+              labels: ['Protein', 'Carb', 'Fat'],
             }}
-            series={[44, 55, 41, 17, 15]}
+            series={[44, 55, 41]}
             type="radialBar"
             width="380"
           />

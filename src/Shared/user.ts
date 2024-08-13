@@ -64,3 +64,11 @@ export type UserFromFirebaseDb = Omit<
 export type NotificationDataFirebaseDB = Omit<NotificationData, 'createdOn'> & {
   createdOn: Timestamp;
 };
+
+export type Story = {
+  stories: { storyUrl: string; storyType: string; storyCreatedOn: string }[];
+  userName: string;
+  userPhoto: string;
+  storyByUserId: string;
+  latestStoryOn: Timestamp;
+};

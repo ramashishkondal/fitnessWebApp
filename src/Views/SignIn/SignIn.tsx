@@ -44,7 +44,7 @@ function SignIn() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      console.log('error while signing user in', error);
+      // console.log('error while signing user in', error);
     }
     setIsLoading(false);
   };

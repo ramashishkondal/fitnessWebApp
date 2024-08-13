@@ -50,11 +50,11 @@ function PrivateLayout({ children }: Readonly<AppLayoutProps>): JSX.Element {
   }, [id, dispatch]);
 
   return (
-    <div className="flex">
-      <Drawer />
-
-      {children}
-      {/* <Footer /> */}
+    <div className="flex h-screen">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <Drawer />
+      </div>
+      <div className="flex-1 overflow-y-auto">{children}</div>
     </div>
   );
 }
