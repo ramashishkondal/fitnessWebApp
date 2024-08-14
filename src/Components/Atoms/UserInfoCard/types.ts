@@ -1,4 +1,6 @@
+import { Timestamp } from 'firebase/firestore';
+
 export type UserInfoCardProps = {
-  userId: string;
-  timeAgo: string;
+  userInfo: { userName: string; userPhoto: string };
+  createdOn: Timestamp;
 };

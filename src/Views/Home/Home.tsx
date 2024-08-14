@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import ReactApexChart from 'react-apexcharts';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { RootState } from '../../Store';
 import AllMealData from '../../Components/Molecules/AllMealData';
@@ -10,16 +9,18 @@ import { updateHealthData } from '../../Store/Health';
 import { db, firebaseDB } from '../../Utils/firebaseConfig';
 import { resetMealDataItemsTo } from '../../Store/MealData';
 
+import MealChartAndStats from '../../Components/Molecules/MealChartAndStats';
+
 function Home() {
   // state use
   const [greeting, setGreeting] = useState('');
   const [isModalShown, setIsModalShown] = useState(false);
 
   // redux use
+  const dispatch = useDispatch();
   const { id, photo, firstName } = useSelector(
     (state: RootState) => state.user
   );
-  const dispatch = useDispatch();
 
   // Update greeting based on time
   const updateGreeting = () => {
@@ -84,7 +85,7 @@ function Home() {
   }, [dispatch, id]);
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="w-full">
       <CustomModal closeModal={closeModal} isModalShown={isModalShown}>
         <p>add food items</p>
       </CustomModal>
@@ -104,45 +105,8 @@ function Home() {
         Add Meal
       </button>
       <div className="flex flex-1 flex-row">
-        <div className="border flex flex-row justify-evenly ">
-          <ReactApexChart
-            options={{
-              chart: {
-                height: 350,
-                type: 'radialBar',
-                width: 200,
-              },
-              plotOptions: {
-                radialBar: {
-                  dataLabels: {
-                    name: {
-                      fontSize: '22px',
-                    },
-                    value: {
-                      fontSize: '16px',
-                    },
-                    total: {
-                      show: true,
-                      label: 'Total Calories',
-                      formatter: () => {
-                        // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                        return '249';
-                      },
-                    },
-                  },
-                },
-              },
-              labels: ['Protein', 'Carb', 'Fat'],
-            }}
-            series={[44, 55, 41]}
-            type="radialBar"
-            width="380"
-          />
-          <div>stats</div>
-        </div>
-        <div className="flex flex-1">
-          <AllMealData />
-        </div>
+        <MealChartAndStats />
+        <AllMealData />
       </div>
       <div>
         <p>Water Intake</p>

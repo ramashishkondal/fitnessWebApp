@@ -1,7 +1,9 @@
 import { Plus } from '../../../Shared/Constants';
 
 function AddStory() {
+  // functions
   const handleAddStory = () => {};
+
   return (
     <button
       type="button"

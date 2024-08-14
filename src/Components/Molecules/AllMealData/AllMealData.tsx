@@ -1,8 +1,10 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../Store';
 import MealData from '../../Atoms/MealData';
+import { getCaloriesOfFood } from '../../../Utils/commonUtils';
 
 function AllMealData() {
+  // redux use
   const { breakfast, dinner, lunch, snack } = useSelector(
     (state: RootState) => state.meal
   );
@@ -18,14 +20,15 @@ function AllMealData() {
       </div>
     );
   }
+
   return (
     <div className="flex flex-1 border mx-4 rounded-md">
-      {snack.length > 0 && (
+      {breakfast.length > 0 && (
         <div className="flex flex-1 flex-col border rounded-md p-2 m-4 max-h-96 overflow-y-auto">
-          <p className="font-semibold text-xl">Snack</p>
-          {snack.map((meal) => (
+          <p className="font-semibold text-xl">Breakfast</p>
+          {breakfast.map((meal) => (
             <MealData
-              calories={meal.calories}
+              calories={getCaloriesOfFood(meal)}
               id={meal.id}
               name={meal.name}
               serving_size_g={meal.serving_size_g}
@@ -34,12 +37,12 @@ function AllMealData() {
           ))}
         </div>
       )}
-      {breakfast.length > 0 && (
+      {snack.length > 0 && (
         <div className="flex flex-1 flex-col border rounded-md p-2 m-4 max-h-96 overflow-y-auto">
-          <p className="font-semibold text-xl">Breakfast</p>
-          {breakfast.map((meal) => (
+          <p className="font-semibold text-xl">Snack</p>
+          {snack.map((meal) => (
             <MealData
-              calories={meal.calories}
+              calories={getCaloriesOfFood(meal)}
               id={meal.id}
               name={meal.name}
               serving_size_g={meal.serving_size_g}
@@ -53,7 +56,7 @@ function AllMealData() {
           <p className="font-semibold text-xl">Dinner</p>
           {dinner.map((meal) => (
             <MealData
-              calories={meal.calories}
+              calories={getCaloriesOfFood(meal)}
               id={meal.id}
               name={meal.name}
               serving_size_g={meal.serving_size_g}
@@ -67,7 +70,7 @@ function AllMealData() {
           <p className="font-semibold text-xl">Lunch</p>
           {lunch.map((meal) => (
             <MealData
-              calories={meal.calories}
+              calories={getCaloriesOfFood(meal)}
               id={meal.id}
               name={meal.name}
               serving_size_g={meal.serving_size_g}

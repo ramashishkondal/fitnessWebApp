@@ -18,11 +18,12 @@ import loader from './Loader';
 import user from './User';
 import meal from './MealData';
 import health from './Health';
+import settings from './UserSettings';
 
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'],
+  whitelist: ['user', 'settings'],
 };
 
 const reducers = combineReducers({
@@ -31,6 +32,7 @@ const reducers = combineReducers({
   user,
   meal,
   health,
+  settings,
   [api.reducerPath]: api.reducer,
 });
 

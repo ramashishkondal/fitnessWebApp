@@ -11,6 +11,8 @@ export default {
         customGray300: '#DCDDE0',
         customGray200: '#F1EFFA',
         customGray100: '#F4F6FA',
+        customOrange: '#F7A56D',
+        customCyan: '#44C7BC',
       },
       backgroundImage: {
         detailsCompleted: "url('/src/assets/images/background.png')",

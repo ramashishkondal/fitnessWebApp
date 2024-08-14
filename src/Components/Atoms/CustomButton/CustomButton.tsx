@@ -1,4 +1,4 @@
-import { Oval } from 'react-loader-spinner';
+import { Rings } from 'react-loader-spinner';
 import { CustomButtonProps } from './types';
 
 function CustomButton({
@@ -14,12 +14,12 @@ function CustomButton({
       disabled={isLoading}
     >
       {isLoading ? (
-        <Oval
+        <Rings
           visible={isLoading}
           height="20"
           width="20"
           color="white"
-          ariaLabel="oval-loading"
+          ariaLabel="rings-loading"
         />
       ) : (
         text

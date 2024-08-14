@@ -1,3 +1,5 @@
+import { Meal } from '../Store/MealData';
+
 export const extractAlphabets = (str: string) => {
   // Use a regular expression to match all alphabetic characters
   const alphabetOnly = str.match(/[a-zA-Z]/g);
@@ -30,3 +32,8 @@ export const getTimePassed = (timeInMillis: number): string => {
     Math.floor(timePassedInHrs / 24) > 1 ? 'days' : 'day'
   } ago`;
 };
+
+export const getCaloriesOfFood = (food: Meal) =>
+  food.protein * 4 + food.carbs * 4 + food.fat * 9 > food.calories
+    ? food.protein * 4 + food.carbs * 4 + food.fat * 9
+    : food.calories;

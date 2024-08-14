@@ -26,6 +26,12 @@ export { default as HeartLiked } from '../assets/svgs/heartLiked.svg';
 export { default as HeartUnLiked } from '../assets/svgs/heartUnLiked.svg';
 export { default as CommentDialog } from '../assets/svgs/comment.svg';
 export { default as PostSign } from '../assets/svgs/postSign.svg';
+export { default as LeftArrowRounded } from '../assets/svgs/leftArrowRounded.svg';
+export { default as RightArrowRounded } from '../assets/svgs/rightArrowRounded.svg';
+export { default as HomeIcon } from '../assets/svgs/home.svg';
+export { default as CommunityIcon } from '../assets/svgs/community.svg';
+export { default as SettingsIcon } from '../assets/svgs/settings.svg';
+export { default as LogOutIcon } from '../assets/svgs/logout.svg';
 
 // interests
 export { default as Fashion } from '../assets/svgs/Interests/Fashion.svg';
@@ -136,6 +142,16 @@ const STRING = {
     description:
       "Thanks for taking your time to create account with us. Now this is the fun part, let's explore.",
   },
+  SETTINGS: {
+    heading: 'Settings',
+    editProfile: 'Edit Profile',
+    inviteFriend: 'Invite Friend',
+    pushNotification: 'Push Notification',
+    resetPassword: 'Reset Password',
+    giveFeedback: 'Give Feedback',
+    aboutUs: 'About Us',
+    logOut: 'Log Out',
+  },
 };
 export { STRING };
 
@@ -229,6 +245,7 @@ const ROUTES_CONFIG = {
     title: 'About US',
   },
 };
+export { ROUTES, WILDCARD_ROUTES, ROUTES_CONFIG };
 
 export const COLORS = {
   PRIMARY: {
@@ -246,6 +263,7 @@ export const COLORS = {
     CYAN: '#44C7BC',
     LIGHT_GREY: '#DCDDE0',
     LIGHT_GREY_2: '#F1EFFA',
+    GREEN: '#4CD965',
   },
 };
 
@@ -516,4 +534,12 @@ export const foodData: Array<Omit<Meal, 'id'>> = [
   },
 ];
 
-export { ROUTES, WILDCARD_ROUTES, ROUTES_CONFIG };
+export const weekday = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];

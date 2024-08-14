@@ -2,6 +2,7 @@ import {
   Timestamp,
   arrayUnion,
   doc,
+  getDoc,
   setDoc,
   updateDoc,
 } from 'firebase/firestore';
@@ -13,9 +14,20 @@ import {
   NotificationDataFirebaseDB,
   Post,
   User,
+  UserFromFirebaseDb,
 } from '../Shared/user';
 import { db, firebaseDB, storage } from './firebaseConfig';
 import { DailyMeals } from '../Store/MealData';
+
+// fetching
+export const getUser = async (userId: string) => {
+  const userDoc = doc(db, firebaseDB.collections.users, userId);
+  const userData = await getDoc(userDoc);
+  if (userData.exists()) {
+    if (userData.data()) return userData.data() as UserFromFirebaseDb;
+  }
+  throw Error('can get user data');
+};
 
 // storing
 export const createUser = async (userId: string, user: User) => {
