@@ -1,14 +1,30 @@
-import { AppLogo } from '../../../../Constants/icons';
-import { ROUTES } from '../../../../Shared/Constants';
-import NavBarHeading from '../../../Atoms/NavBarHeading';
+import { Link } from 'react-router-dom';
+import { AppLogo, ROUTES_CONFIG, STRING } from '../../../../Shared/Constants';
 
 function Navbar() {
   return (
-    <header className="border flex rounded-md">
-      <NavBarHeading goTo={ROUTES.HOMEPAGE} title="Home" />
-      <NavBarHeading goTo={ROUTES.LOGIN} title="Login" />
-      <div className="justify-center border flex flex-1 items-center bg-slate-200">
-        <img src={AppLogo} alt="app logo" className="size-10" />
+    <header className="border flex rounded-md px-3 py-2 justify-between items-center">
+      <Link
+        to={ROUTES_CONFIG.LANDING_PAGE.path}
+        className="flex content-center items-center ml-7"
+      >
+        <img src={AppLogo} alt="App Logo" className="size-6" />
+        <p className="font-semibold text-xl mx-4">{STRING.APP_NAME}</p>
+      </Link>
+      <div className="flex justify-center items-center">
+        <Link
+          className="rounded-3xl bg-customPurple py-2 text-white text-sm px-4 font-medium"
+          to={ROUTES_CONFIG.EMAIL.path}
+        >
+          {STRING.NAV_BAR.getStarted}
+        </Link>
+        <Link
+          type="button"
+          className="rounded-3xl bg-[#F5F0E5] py-2 text-black text-sm px-4 mx-2 font-medium"
+          to={ROUTES_CONFIG.SIGN_IN.path}
+        >
+          {STRING.NAV_BAR.signIn}
+        </Link>
       </div>
     </header>
   );

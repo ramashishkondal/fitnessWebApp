@@ -1,24 +1,28 @@
 import { Navigate } from 'react-router-dom';
 import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
-import Dashboard from '../Views/Dashboard/Dashboard';
 import { CustomRouter } from './RootRoutes';
-import Login from '../Views/Login';
+import SignIn from '../Views/SignIn';
+import LandingPage from '../Views/LandingPage';
+import { ONBOARDING_ROUTES } from './OnboardingRoutes';
+import Create from '../Views/Create';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
   {
-    path: ROUTES_CONFIG.HOMEPAGE.path,
-    element: <Dashboard />,
-    title: ROUTES_CONFIG.HOMEPAGE.title,
-    loader: async () => {
-      const rawData = await fetch('https://ghibli.rest/films');
-      return rawData.json();
-    },
+    path: ROUTES_CONFIG.LANDING_PAGE.path,
+    element: <LandingPage />,
+    title: ROUTES_CONFIG.LANDING_PAGE.title,
   },
   {
-    path: `${ROUTES_CONFIG.LOGIN.path}`,
-    title: ROUTES_CONFIG.LOGIN.title,
-    element: <Login />,
+    path: `${ROUTES_CONFIG.SIGN_IN.path}`,
+    title: ROUTES_CONFIG.SIGN_IN.title,
+    element: <SignIn />,
+  },
+  {
+    path: `${ROUTES_CONFIG.REGISTER.path}`,
+    title: ROUTES_CONFIG.REGISTER.title,
+    element: <Create />,
+    children: ONBOARDING_ROUTES,
   },
   {
     path: '*',

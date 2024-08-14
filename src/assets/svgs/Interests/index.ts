@@ -1,0 +1,9 @@
+export { default as Fashion } from './Fashion.svg';
+export { default as Plant } from './plant.svg';
+export { default as Fitness } from './dumbell.svg';
+export { default as Meditation } from './meditation.svg';
+export { default as SmokeFree } from './noSmoking.svg';
+export { default as Sleep } from './sleepingMan.svg';
+export { default as Health } from './heartBeating.svg';
+export { default as Running } from './runningMan.svg';
+export { default as Vegan } from './vegan.svg';

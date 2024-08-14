@@ -15,15 +15,22 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import api from '../Services/Api/api';
 import common from './Common';
 import loader from './Loader';
+import user from './User';
+import meal from './MealData';
+import health from './Health';
 
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['common'],
+  whitelist: ['user'],
 };
+
 const reducers = combineReducers({
   common,
   loader,
+  user,
+  meal,
+  health,
   [api.reducerPath]: api.reducer,
 });
 
