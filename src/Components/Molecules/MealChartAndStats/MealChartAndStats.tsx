@@ -31,8 +31,11 @@ function MealChartAndStats() {
         ),
     [meal]
   );
-  const percentageOfNutrientsStats = useMemo(
-    () => ({
+  const percentageOfNutrientsStats = useMemo(() => {
+    if (nutrientsStats.calories === 0) {
+      return nutrientsStats;
+    }
+    return {
       protein: parseFloat(
         (
           ((nutrientsStats.protein * 4) / nutrientsStats.calories) *
@@ -47,11 +50,11 @@ function MealChartAndStats() {
       fat: parseFloat(
         (((nutrientsStats.fat * 9) / nutrientsStats.calories) * 100).toFixed(1)
       ),
-    }),
-    [nutrientsStats]
-  );
+    };
+  }, [nutrientsStats]);
+
   return (
-    <div className="border flex flex-col justify-evenly py-4">
+    <div className=" flex flex-col justify-evenly py-4 shadow-lg rounded-md">
       <ReactApexChart
         options={{
           chart: {

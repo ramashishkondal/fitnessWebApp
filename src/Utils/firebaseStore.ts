@@ -71,6 +71,66 @@ export const storePost = async (post: Post) => {
     // console.log('error encountered while uploading post', error);
   }
 };
+// export const storeStory = async (
+//   story: {
+//     storyUrl: string;
+//     storyType: string;
+//     userName: string;
+//     userPhoto: string;
+//   },
+//   userId: string
+// ) => {
+//   try {
+//     const storyId = uuidv4();
+//     const reference = storage().ref(
+//       'media/' + 'stories/' + userId + '/' + storyId
+//     );
+//     await reference.putFile(story.storyUrl);
+//     const url = await reference.getDownloadURL();
+
+//     const val = await firestore()
+//       .collection(firebaseDB.collections.stories)
+//       .doc(userId)
+//       .get();
+//     const userStoryData = val.data() as StoryData;
+
+//     if (userStoryData) {
+//       await firestore()
+//         .collection(firebaseDB.collections.stories)
+//         .doc(userId)
+//         .set({
+//           stories: userStoryData.stories.concat({
+//             storyType: story.storyType,
+//             storyUrl: url,
+//             storyCreatedOn: new Date().toISOString(),
+//           }),
+//           userName: story.userName,
+//           userPhoto: story.userPhoto,
+//           storyByUserId: userId,
+//           latestStoryOn: Timestamp.fromDate(new Date()),
+//         });
+//     } else {
+//       await firestore()
+//         .collection(firebaseDB.collections.stories)
+//         .doc(userId)
+//         .set({
+//           stories: [
+//             {
+//               storyType: story.storyType,
+//               storyUrl: url,
+//               storyCreatedOn: new Date().toISOString(),
+//             },
+//           ],
+//           userName: story.userName,
+//           userPhoto: story.userPhoto,
+//           storyByUserId: userId,
+//           latestStoryOn: Timestamp.fromDate(new Date()),
+//         });
+//     }
+//   } catch (e) {
+//     console.log('error posting story', e);
+//   }
+// };
 
 // updating
 export const updateWaterIntake = async (

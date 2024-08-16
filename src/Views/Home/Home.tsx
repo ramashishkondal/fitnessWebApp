@@ -10,11 +10,13 @@ import { db, firebaseDB } from '../../Utils/firebaseConfig';
 import { resetMealDataItemsTo } from '../../Store/MealData';
 
 import MealChartAndStats from '../../Components/Molecules/MealChartAndStats';
+import AddFoodItems from '../../Components/Molecules/AddFoodItems';
 
 function Home() {
   // state use
   const [greeting, setGreeting] = useState('');
-  const [isModalShown, setIsModalShown] = useState(false);
+  const [isAddFoodItemsModalShown, setIsAddFoodItemsModalShown] =
+    useState(false);
 
   // redux use
   const dispatch = useDispatch();
@@ -34,11 +36,11 @@ function Home() {
     }
   };
 
-  const showModal = () => {
-    setIsModalShown(true);
+  const showAddFoodItemsModal = () => {
+    setIsAddFoodItemsModalShown(true);
   };
-  const closeModal = () => {
-    setIsModalShown(false);
+  const closeAddFoodItemsModal = () => {
+    setIsAddFoodItemsModalShown(false);
   };
 
   useEffect(() => {
@@ -85,9 +87,12 @@ function Home() {
   }, [dispatch, id]);
 
   return (
-    <div className="w-full">
-      <CustomModal closeModal={closeModal} isModalShown={isModalShown}>
-        <p>add food items</p>
+    <div className="w-full px-4">
+      <CustomModal
+        closeModal={closeAddFoodItemsModal}
+        isModalShown={isAddFoodItemsModalShown}
+      >
+        <AddFoodItems closeModal={closeAddFoodItemsModal} />
       </CustomModal>
       <div className="w-full justify-end flex">
         <button type="button">
@@ -101,10 +106,17 @@ function Home() {
       <div>
         <p className="text-4xl font-semibold">{`Good ${greeting}, ${firstName}`}</p>
       </div>
-      <button type="button" onClick={showModal}>
+      <button type="button" onClick={showAddFoodItemsModal}>
         Add Meal
       </button>
       <div className="flex flex-1 flex-row">
+        <div className="flex justify-center items-center mx-2 rounded-md shadow-md">
+          <p className="text-vertical text-4xl p-2">Nutrition</p>
+          <p className="text-vertical text-customGray300 text-4xl mb-2 text-xl">
+            12 cal / 2500
+          </p>
+        </div>
+
         <MealChartAndStats />
         <AllMealData />
       </div>

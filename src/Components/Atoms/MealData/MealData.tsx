@@ -9,7 +9,7 @@ function MealData({
   return (
     <div
       key={id}
-      className="flex flex-1 pl-8 py-3 justify-between px-4 border-b-2 font-medium"
+      className="flex pl-8 py-3 justify-between px-4 border-b-2 font-medium"
     >
       <div>
         <p className="text-wrap max-w-32">{name}</p>

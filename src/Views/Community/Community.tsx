@@ -10,9 +10,11 @@ function Community() {
         <p className="text-4xl font-semibold my-6 ">Community</p>
         <AddPost />
       </div>
-      <div className="border border-red-300 flex justify-center items-center flex-col">
-        <div className="border flex items-center ">
-          <AddStory />
+      <div className="flex justify-center items-center flex-col">
+        <div className="flex items-center shadow-lg rounded-lg mt-2 w-9/12">
+          <div className="ml-2 my-2">
+            <AddStory />
+          </div>
           <AllStoriesData />
         </div>
         <AllPostsData />

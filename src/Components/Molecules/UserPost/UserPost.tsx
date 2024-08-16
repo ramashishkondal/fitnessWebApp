@@ -78,23 +78,23 @@ function UserPost({
   return (
     <>
       <CustomModal isModalShown={isPostModalShown} closeModal={closePostModal}>
-        <div className="flex max-h-[750px]">
-          <div className="bg-black">
+        <div className="flex max-h-[750px] max-w-[900px] h-[700px]">
+          <div className="bg-black flex flex-1 flex-col justify-center ">
             <img
               src={postedPhoto}
               alt="post"
-              className=" object-contain h-[600px] w-[800px]"
+              className="object-contain max-h-[100%]"
             />
           </div>
-          <div className="mx-4 min-w-96">
+          <div className="mx-4 min-w-96 flex flex-1 flex-col">
             <div>
               {userData && (
                 <UserInfoCard userInfo={userData} createdOn={postCreatedON} />
               )}
             </div>
-            <p className="text-left w-80  text-wrap">{caption}</p>
+            <p className="text-left w-80 text-wrap">{caption}</p>
             <p className="text-2xl font-semibold text-left mt-2">Comments</p>
-            <div className="max-h-[450px] overflow-y-auto overflow-x-hidden">
+            <div className="overflow-y-auto overflow-x-hidden">
               {comments.map((c) => (
                 <Comment
                   key={c.createdOn.seconds}
@@ -114,7 +114,7 @@ function UserPost({
       </CustomModal>
       <button
         type="button"
-        className="my-4 border rounded-md flex flex-col justify-center items-center py-4 px-4"
+        className="my-8 rounded-md flex flex-col justify-center items-center py-4 px-4 shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-[1.02]"
         onClick={() => setIsPostModalShown(true)}
       >
         {userData && (
@@ -125,10 +125,9 @@ function UserPost({
           <img
             src={postedPhoto}
             alt="post"
-            className="w-[600px] object-cover rounded-md"
+            className="w-[600px] object-cover rounded-md "
           />
-
-          <div className="flex items-center p-2">
+          <div className="flex items-center p-2 mt-2">
             <button type="button" className="flex" onClick={handleLikePressed}>
               {isLikedByUser ? (
                 <img

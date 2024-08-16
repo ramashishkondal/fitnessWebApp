@@ -1,19 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Switch from 'react-switch';
 import { memo, useMemo, useState } from 'react';
-import { COLORS, STRING } from '../../../Shared/Constants';
+import { useNavigate } from 'react-router-dom';
+import { COLORS, ROUTES_CONFIG, STRING } from '../../../Shared/Constants';
 import { RootState } from '../../../Store';
 import SettingsMenuItem from '../../Atoms/SettingsMenuItem';
 import { SettingsMenuProps } from './types';
 import { updateSettingPushNotification } from '../../../Store/UserSettings';
 import CustomModal from '../CustomModal';
 import GiveFeedback from '../../Organisms/GiveFeedback';
+import ResetPassword from '../../Organisms/ResetPassword';
 
 function SettingsMenu({ isMenuShown, closeMenu }: Readonly<SettingsMenuProps>) {
   // state use
   const [showSettingsModal, setShowSettingsModal] = useState<
-    'giveFeedback' | null
+    'giveFeedback' | 'resetPassword' | null
   >(null);
+
+  // navigate use
+  const navigate = useNavigate();
+
   // redux use
   const dispatch = useDispatch();
   const { allowPushNotifications } = useSelector(
@@ -25,6 +31,10 @@ function SettingsMenu({ isMenuShown, closeMenu }: Readonly<SettingsMenuProps>) {
     if (showSettingsModal === 'giveFeedback') {
       return <GiveFeedback />;
     }
+    if (showSettingsModal === 'resetPassword') {
+      return <ResetPassword />;
+    }
+
     return null;
   }, [showSettingsModal]);
 
@@ -33,10 +43,16 @@ function SettingsMenu({ isMenuShown, closeMenu }: Readonly<SettingsMenuProps>) {
   }
   // functions
   const closeSettingsModal = () => {
+    closeMenu();
     setShowSettingsModal(null);
   };
-  const handleEditProfilePressed = () => {};
+  const handleEditProfilePressed = () => {
+    navigate(ROUTES_CONFIG.EDIT_PROFILE.path);
+  };
   const handleInviteFriendPressed = () => {};
+  const handleResetPassword = () => {
+    setShowSettingsModal('resetPassword');
+  };
   const handleGiveFeedbackPressed = () => {
     setShowSettingsModal('giveFeedback');
   };
@@ -52,15 +68,6 @@ function SettingsMenu({ isMenuShown, closeMenu }: Readonly<SettingsMenuProps>) {
       >
         {modalContent}
       </CustomModal>
-      <button
-        type="button"
-        className="fixed inset-0 flex
-        cursor-default z-0"
-        onClick={closeMenu}
-      >
-        <p />
-      </button>
-
       <button
         type="button"
         className="bg-customPurpleLight ml-10 mt-2 rounded-md text-left z-10"
@@ -97,7 +104,7 @@ function SettingsMenu({ isMenuShown, closeMenu }: Readonly<SettingsMenuProps>) {
 
         <SettingsMenuItem
           text={STRING.SETTINGS.resetPassword}
-          onClick={handleInviteFriendPressed}
+          onClick={handleResetPassword}
         />
         <SettingsMenuItem
           text={STRING.SETTINGS.giveFeedback}

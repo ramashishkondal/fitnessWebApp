@@ -22,10 +22,10 @@ function AllMealData() {
   }
 
   return (
-    <div className="flex flex-1 border mx-4 rounded-md">
+    <div className="flex flex-1 mx-4 shadow-lg rounded-md">
       {breakfast.length > 0 && (
-        <div className="flex flex-1 flex-col border rounded-md p-2 m-4 max-h-96 overflow-y-auto">
-          <p className="font-semibold text-xl">Breakfast</p>
+        <div className="flex flex-1 flex-col rounded-md p-2 m-4 max-h-[600px] overflow-y-auto">
+          <p className="font-semibold text-3xl">Breakfast</p>
           {breakfast.map((meal) => (
             <MealData
               calories={getCaloriesOfFood(meal)}
@@ -38,8 +38,8 @@ function AllMealData() {
         </div>
       )}
       {snack.length > 0 && (
-        <div className="flex flex-1 flex-col border rounded-md p-2 m-4 max-h-96 overflow-y-auto">
-          <p className="font-semibold text-xl">Snack</p>
+        <div className="flex flex-1 flex-col rounded-md p-2 m-4 max-h-[600px] overflow-y-auto">
+          <p className="font-semibold text-3xl">Snack</p>
           {snack.map((meal) => (
             <MealData
               calories={getCaloriesOfFood(meal)}
@@ -52,8 +52,8 @@ function AllMealData() {
         </div>
       )}
       {dinner.length > 0 && (
-        <div className="flex flex-1 flex-col border rounded-md p-2 m-4 max-h-96 overflow-y-auto">
-          <p className="font-semibold text-xl">Dinner</p>
+        <div className="flex flex-1 flex-col rounded-md p-2 m-4 max-h-[600px] overflow-y-auto">
+          <p className="font-semibold text-3xl">Dinner</p>
           {dinner.map((meal) => (
             <MealData
               calories={getCaloriesOfFood(meal)}
@@ -66,8 +66,8 @@ function AllMealData() {
         </div>
       )}
       {lunch.length > 0 && (
-        <div className="flex flex-1 flex-col border rounded-md p-2 m-4 max-h-96 overflow-y-auto">
-          <p className="font-semibold text-xl">Lunch</p>
+        <div className="flex flex-1 flex-col rounded-md p-2 m-4 max-h-[600px] overflow-y-auto">
+          <p className="font-semibold text-3xl">Lunch</p>
           {lunch.map((meal) => (
             <MealData
               calories={getCaloriesOfFood(meal)}

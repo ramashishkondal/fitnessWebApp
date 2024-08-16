@@ -4,6 +4,7 @@ import { CustomRouter } from './RootRoutes';
 import Home from '../Views/Home';
 import Settings from '../Views/Settings';
 import Community from '../Views/Community';
+import EditProfile from '../Views/EditProfile';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PRIVATE_ROUTES: Array<CustomRouter> = [
@@ -21,6 +22,11 @@ export const PRIVATE_ROUTES: Array<CustomRouter> = [
     path: ROUTES_CONFIG.COMMUNITY.path,
     element: <Community />,
     title: ROUTES_CONFIG.COMMUNITY.title,
+  },
+  {
+    path: ROUTES_CONFIG.EDIT_PROFILE.path,
+    element: <EditProfile />,
+    title: ROUTES_CONFIG.EDIT_PROFILE.title,
   },
   {
     path: ROUTES_CONFIG.SETTINGS.path,

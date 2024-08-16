@@ -32,6 +32,9 @@ export { default as HomeIcon } from '../assets/svgs/home.svg';
 export { default as CommunityIcon } from '../assets/svgs/community.svg';
 export { default as SettingsIcon } from '../assets/svgs/settings.svg';
 export { default as LogOutIcon } from '../assets/svgs/logout.svg';
+export { default as SearchIcon } from '../assets/svgs/search.svg';
+export { default as FoodBowl } from '../assets/svgs/foodBowl.svg';
+export { default as Pencil } from '../assets/svgs/pencil.svg';
 
 // interests
 export { default as Fashion } from '../assets/svgs/Interests/Fashion.svg';
@@ -156,6 +159,7 @@ const STRING = {
 export { STRING };
 
 const ROUTES = {
+  EDIT_PROFILE: '/edit-profile',
   LANDING_PAGE: '/',
   HOME: '/',
   SETTINGS: '/settings',
@@ -183,6 +187,10 @@ const ROUTES_CONFIG = {
   HOME: {
     path: ROUTES.HOME,
     title: 'HOME',
+  },
+  EDIT_PROFILE: {
+    path: ROUTES.EDIT_PROFILE,
+    title: 'Edit Profile',
   },
   COMMUNITY: {
     path: ROUTES.COMMUNITY,
