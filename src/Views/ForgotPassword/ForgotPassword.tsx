@@ -36,7 +36,7 @@ function ForgotPassword() {
       }
       await sendPasswordResetEmail(auth, email);
     } catch (error) {
-      console.error('error encountered while sending reset email', error);
+      // console.error('error encountered while sending reset email', error);
     }
   };
   const handleSubmit = () => {

@@ -70,7 +70,7 @@ export const storePost = async (post: Post) => {
       photo: url,
     });
   } catch (error) {
-    console.log('error encountered while uploading post', error);
+    // console.log('error encountered while uploading post', error);
   }
 };
 // export const storeStory = async (
@@ -144,7 +144,7 @@ export const updateUserInfo = async (
     const userDoc = doc(db, firebaseDB.collections.users, userId);
     await updateDoc(userDoc, userData);
   } catch (error) {
-    console.log('error encountered in updating user data');
+    // console.log('error encountered in updating user data');
   }
 };
 
@@ -247,6 +247,6 @@ export const deletePost = async (postId: string) => {
     const postDoc = doc(db, firebaseDB.collections.posts, postId);
     await deleteDoc(postDoc);
   } catch (error) {
-    console.log('error with deleting post', error);
+    // console.log('error with deleting post', error);
   }
 };

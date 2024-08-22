@@ -56,6 +56,7 @@ function AddComment({ postId, closeModal }: Readonly<AddCommentProps>) {
         <div
           className="fixed inset-0 flex items-center justify-center"
           onClick={() => setEmojiPickerShown(false)}
+          aria-hidden="true"
         />
       )}
       <div className="p-48" />

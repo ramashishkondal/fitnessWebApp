@@ -38,7 +38,7 @@ function DragAndDropFiles({
     [setPhoto, runOnDrop, fileTypesAllowed]
   );
 
-  const { isDragActive, getRootProps, getInputProps } = useDropzone({
+  const { isDragActive } = useDropzone({
     onDrop,
     accept:
       fileTypesAllowed === 'image'
@@ -53,12 +53,16 @@ function DragAndDropFiles({
     <div>
       {!photo ? (
         <div
-          {...getRootProps()}
+          // {...getRootProps()}
           className={`border-2 border-dashed rounded p-6 text-center w-96 w-80 h-96 flex justify-center items-center ${
             isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
           }`}
         >
-          <input multiple={false} {...getInputProps()} className="w-80" />
+          <input
+            multiple={false}
+            // {...getInputProps()}
+            className="w-80"
+          />
           {isDragActive ? (
             <p>Drop the files here...</p>
           ) : (

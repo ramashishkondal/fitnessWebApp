@@ -84,6 +84,7 @@ function AddPost() {
           <div
             className="fixed inset-0 flex items-center justify-center"
             onClick={() => setEmojiPickerShown(false)}
+            aria-hidden="true"
           />
         )}
         <DragAndDropFiles

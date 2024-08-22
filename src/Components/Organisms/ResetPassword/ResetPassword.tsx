@@ -28,7 +28,7 @@ function ResetPassword({ closeModal }: Readonly<ResetPasswordProps>) {
         await updatePassword(user, newPassword);
       }
     } catch {
-      console.error('error updating the password');
+      // console.error('error updating the password');
     }
   };
   const handleSubmit = () => {
