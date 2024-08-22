@@ -121,8 +121,13 @@ function Home() {
         <AllMealData />
       </div>
       <div>
-        <p>Water Intake</p>
-        <div>
+        <div className="flex h-96 my-8">
+          <div className="flex justify-center items-center mx-2 rounded-md shadow-md">
+            <p className="text-vertical text-4xl p-2">Water Intake</p>
+            <p className="text-vertical text-customGray300 text-4xl mb-2 text-xl">
+              0 / 10
+            </p>
+          </div>
           <WaterIntake />
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Timestamp } from 'firebase/firestore';
 import { UserInfoCardProps } from './types';
 import { DefaultUser } from '../../../Shared/Constants';
@@ -8,11 +9,16 @@ function UserInfoCard({
   createdOn,
 }: Readonly<UserInfoCardProps>) {
   // constants
-  const timePassed = getTimePassed(
-    Timestamp.fromMillis(createdOn.seconds * 1000)
-      .toDate()
-      .getTime()
-  );
+  const timePassed = useMemo(() => {
+    if (createdOn) {
+      return getTimePassed(
+        Timestamp.fromMillis(createdOn.seconds * 1000)
+          .toDate()
+          .getTime()
+      );
+    }
+    return null;
+  }, [createdOn]);
 
   return (
     <div className="flex w-full items-center my-4 mx-1 text-left">
@@ -25,7 +31,11 @@ function UserInfoCard({
         <p className="w-72 overflow-hidden text-ellipsis whitespace-nowrap">
           {userName}
         </p>
-        <p className="text-customGray300 font-semibold text-xs">{timePassed}</p>
+        {timePassed && (
+          <p className="text-customGray300 font-semibold text-xs">
+            {timePassed}
+          </p>
+        )}
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ function Comment({ text, commentCreatedOn, userId }: Readonly<CommentProps>) {
   return (
     <div>
       <UserInfoCard createdOn={commentCreatedOn} userInfo={commentedByUser} />
-      <p className="text-left ml-20 text-wrap">{text}</p>
+      <p className="text-left ml-20 text-wrap -mt-3">{text}</p>
     </div>
   );
 }

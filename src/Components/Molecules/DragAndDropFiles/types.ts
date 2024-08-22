@@ -1,3 +1,8 @@
+import { Dispatch } from 'react';
+
 export type DragAndDropFilesProps = {
-  fileTypesAllowed: string;
+  fileTypesAllowed: 'image' | 'video';
+  photo?: string;
+  setPhoto?: Dispatch<React.SetStateAction<string>>;
+  runOnDrop?: (type: 'image' | 'video') => void;
 };

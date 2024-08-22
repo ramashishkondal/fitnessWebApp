@@ -26,12 +26,13 @@ function AllPostsData() {
     return () => unsubscribe();
   }, []);
 
-  // console.log('posts data', posts);
-
   return (
     <div>
       {posts.map((val) => (
-        <UserPost Post={val} key={val.postId} />
+        <UserPost
+          Post={{ ...val, comments: val.comments.slice().reverse() }}
+          key={val.postId}
+        />
       ))}
     </div>
   );

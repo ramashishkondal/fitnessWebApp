@@ -10,6 +10,54 @@ import {
   Vegan,
 } from '../../Shared/Constants';
 
+export const INTERESTS = [
+  {
+    title: 'Fashion',
+    icon: Fashion,
+    selected: false,
+  },
+  {
+    title: 'Organic',
+    icon: Plant,
+    selected: false,
+  },
+  {
+    title: 'Meditation',
+    icon: HeartBeating,
+    selected: false,
+  },
+  {
+    title: 'Fitness',
+    icon: RunningMan,
+    selected: false,
+  },
+  {
+    title: 'Smoke Free',
+    icon: NoSmoking,
+    selected: false,
+  },
+  {
+    title: 'Sleep',
+    icon: SleepingMan,
+    selected: false,
+  },
+  {
+    title: 'Health',
+    icon: HeartBeating,
+    selected: false,
+  },
+  {
+    title: 'Running',
+    icon: RunningMan,
+    selected: false,
+  },
+  {
+    title: 'Vegan',
+    icon: Vegan,
+    selected: false,
+  },
+];
+
 const initialState: User & { password: string | null } = {
   id: null,
   firstName: '',
@@ -17,53 +65,7 @@ const initialState: User & { password: string | null } = {
   email: '',
   finger: false,
   gender: null,
-  interests: [
-    {
-      title: 'Fashion',
-      icon: Fashion,
-      selected: false,
-    },
-    {
-      title: 'Organic',
-      icon: Plant,
-      selected: false,
-    },
-    {
-      title: 'Meditation',
-      icon: HeartBeating,
-      selected: false,
-    },
-    {
-      title: 'Fitness',
-      icon: RunningMan,
-      selected: false,
-    },
-    {
-      title: 'Smoke Free',
-      icon: NoSmoking,
-      selected: false,
-    },
-    {
-      title: 'Sleep',
-      icon: SleepingMan,
-      selected: false,
-    },
-    {
-      title: 'Health',
-      icon: HeartBeating,
-      selected: false,
-    },
-    {
-      title: 'Running',
-      icon: RunningMan,
-      selected: false,
-    },
-    {
-      title: 'Vegan',
-      icon: Vegan,
-      selected: false,
-    },
-  ],
+  interests: INTERESTS,
   photo: '',
   preferences: [
     { title: 'Weight Loss', selected: false },

@@ -1,6 +1,7 @@
 import {
   Timestamp,
   arrayUnion,
+  deleteDoc,
   doc,
   getDoc,
   setDoc,
@@ -9,6 +10,7 @@ import {
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 import {
+  Comment,
   HealthData,
   NotificationData,
   NotificationDataFirebaseDB,
@@ -57,10 +59,10 @@ export const storePost = async (post: Post) => {
   try {
     const newPostId = post.postId ?? uuidv4();
     const reference = ref(storage, `media/profilePictures/${newPostId}/photo`);
-    await uploadString(reference, post.photo);
+    await uploadString(reference, post.photo, 'data_url');
     const url = await getDownloadURL(reference);
 
-    const postsDoc = doc(db, firebaseDB.collections.posts);
+    const postsDoc = doc(db, firebaseDB.collections.posts, newPostId);
 
     await setDoc(postsDoc, {
       ...post,
@@ -68,7 +70,7 @@ export const storePost = async (post: Post) => {
       photo: url,
     });
   } catch (error) {
-    // console.log('error encountered while uploading post', error);
+    console.log('error encountered while uploading post', error);
   }
 };
 // export const storeStory = async (
@@ -133,6 +135,19 @@ export const storePost = async (post: Post) => {
 // };
 
 // updating
+
+export const updateUserInfo = async (
+  userId: string,
+  userData: Partial<User>
+) => {
+  try {
+    const userDoc = doc(db, firebaseDB.collections.users, userId);
+    await updateDoc(userDoc, userData);
+  } catch (error) {
+    console.log('error encountered in updating user data');
+  }
+};
+
 export const updateWaterIntake = async (
   userId: string,
   waterIntake: HealthData['waterIntake'],
@@ -170,6 +185,29 @@ export const sendNotification = async (
   }
 };
 
+export const storePostComment = async (
+  postId: string,
+  comment: Comment,
+  notification?: { sendNotificationToUserId: string }
+) => {
+  const postsDoc = doc(db, firebaseDB.collections.posts, postId);
+
+  updateDoc(postsDoc, {
+    comments: arrayUnion(comment),
+  });
+  if (notification) {
+    sendNotification(
+      {
+        isShownViaPushNotification: false,
+        isUnread: true,
+        message: `left a comment on your post "${comment.comment}" !`,
+        userId: comment.userId,
+      },
+      notification.sendNotificationToUserId
+    );
+  }
+};
+
 export const updateLikes = async (
   userId: string,
   postId: string,
@@ -200,5 +238,15 @@ export const updateLikes = async (
       },
       notification.sendNotificationToUserId
     );
+  }
+};
+
+// delete
+export const deletePost = async (postId: string) => {
+  try {
+    const postDoc = doc(db, firebaseDB.collections.posts, postId);
+    await deleteDoc(postDoc);
+  } catch (error) {
+    console.log('error with deleting post', error);
   }
 };

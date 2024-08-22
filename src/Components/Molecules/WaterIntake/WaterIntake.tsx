@@ -9,7 +9,12 @@ import {
   updateWaterIntake,
 } from '../../../Utils/firebaseStore';
 import { HealthData, updateHealthData } from '../../../Store/Health';
-import { weekday } from '../../../Shared/Constants';
+import {
+  Plus,
+  SmileyBad,
+  SmileyGood,
+  weekday,
+} from '../../../Shared/Constants';
 import { db, firebaseDB } from '../../../Utils/firebaseConfig';
 
 function WaterIntake() {
@@ -33,7 +38,7 @@ function WaterIntake() {
   // memo use
   const glasses = useMemo(
     () =>
-      Array(glassesLength)
+      Array(waterIntake < glassesLength ? glassesLength : waterIntake)
         .fill(true, 0, waterIntake + 1)
         .fill(false, waterIntake),
     [glassesLength, waterIntake]
@@ -48,11 +53,13 @@ function WaterIntake() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     const healthDoc = doc(db, firebaseDB.collections.healthData, id!);
 
     const unsubscribe = onSnapshot(healthDoc, (snapshot) => {
       const filteredData: HealthData[] = Object.values(snapshot.data() ?? []);
+
       const bestWaterIntakeDay = filteredData.reduce(
         (acc, val) => {
           const currentDate = new Date(val.currentDate);
@@ -129,10 +136,13 @@ function WaterIntake() {
     }
     updateWaterIntake(id!, i + 1, { totalCalorie, totalSteps, noOfGlasses });
   };
+  const addEmptyGlassses = () => {
+    dispatch(updateHealthData({ glassesLength: glassesLength + 1 }));
+  };
 
   return (
-    <div className="flex border flex-col">
-      <div className="flex border">
+    <div className="flex flex-col shadow-lg">
+      <div className="flex p-8">
         {glasses.map((val, index) => (
           <GlassWater
             key={uuidv4()}
@@ -141,10 +151,43 @@ function WaterIntake() {
             handlePressDelete={() => handleGlassEmpty(index)}
           />
         ))}
+        <button
+          type="button"
+          className="size-10 p-2 flex justify-center items-center h-full"
+          onClick={addEmptyGlassses}
+        >
+          <img src={Plus} alt="add more water" />
+        </button>
       </div>
-      <div>
-        <p>Best performance - {rating?.best.week}</p>
-        <p>Worst performance - {rating?.worst.week}</p>
+      <div className="border">
+        <div className="flex items-center justify-between px-4 py-4 my-1">
+          <div className="flex items-center">
+            <div className="size-12 p-2">
+              <img src={SmileyGood} alt="Smiley Good" />
+            </div>
+            <div className="ml-2">
+              <p>Best performance</p>
+              <p className="text-customGray300">{rating?.best.week}</p>
+            </div>
+          </div>
+          <div>
+            <p>{rating?.best.value}</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-between px-4 py-4 my-1">
+          <div className="flex items-center">
+            <div className="size-12 p-2">
+              <img src={SmileyBad} alt="Smiley Good" />
+            </div>
+            <div className="ml-2">
+              <p>Worst performance</p>
+              <p className="text-customGray300">{rating?.worst.week}</p>
+            </div>
+          </div>
+          <div>
+            <p>{rating?.best.value}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

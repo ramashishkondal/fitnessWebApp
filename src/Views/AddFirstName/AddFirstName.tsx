@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Bounce, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import CustomButton from '../../Components/Atoms/CustomButton';
 import CustomTextInput from '../../Components/Atoms/CustomTextInput';
 import { updateUserData } from '../../Store/User';
 import { ROUTES_CONFIG, STRING } from '../../Shared/Constants';
 import { isValidName } from '../../Utils/checkValidity';
 import { RootState } from '../../Store';
+import ToastError from '../../Components/Atoms/ToastError';
 
 function AddFirstName() {
   // redux use
@@ -24,17 +25,7 @@ function AddFirstName() {
 
   const handleSubmit = () => {
     if (!firstName) {
-      toast.error('Please enter your first name.', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Bounce,
-      });
+      ToastError('Please enter your first name.');
       return;
     }
     if (!isValidName(firstName)) {

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Switch from 'react-switch';
-import { memo, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { COLORS, ROUTES_CONFIG, STRING } from '../../../Shared/Constants';
 import { RootState } from '../../../Store';
@@ -26,26 +26,27 @@ function SettingsMenu({ isMenuShown, closeMenu }: Readonly<SettingsMenuProps>) {
     (state: RootState) => state.settings
   );
 
+  const closeSettingsModal = useCallback(() => {
+    closeMenu();
+    setShowSettingsModal(null);
+  }, [closeMenu]);
+
   // memo use
   const modalContent = useMemo(() => {
     if (showSettingsModal === 'giveFeedback') {
       return <GiveFeedback />;
     }
     if (showSettingsModal === 'resetPassword') {
-      return <ResetPassword />;
+      return <ResetPassword closeModal={closeSettingsModal} />;
     }
 
     return null;
-  }, [showSettingsModal]);
+  }, [closeSettingsModal, showSettingsModal]);
 
   if (!isMenuShown) {
     return null;
   }
   // functions
-  const closeSettingsModal = () => {
-    closeMenu();
-    setShowSettingsModal(null);
-  };
   const handleEditProfilePressed = () => {
     navigate(ROUTES_CONFIG.EDIT_PROFILE.path);
   };

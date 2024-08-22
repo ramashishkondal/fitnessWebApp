@@ -1,24 +1,28 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { ChangeEventHandler, useState } from 'react';
-import { LeftArrow } from '../../Shared/Constants';
+import { LeftArrow, ROUTES_CONFIG } from '../../Shared/Constants';
 import CustomTextInput from '../../Components/Atoms/CustomTextInput';
 import CustomButton from '../../Components/Atoms/CustomButton';
 import SocialLogins from '../../Components/Molecules/SocialLogins';
 import { auth } from '../../Utils/firebaseConfig';
 import { isValidEmail } from '../../Utils/checkValidity';
 import ErrorText from '../../Components/Atoms/ErrorText/ErrorText';
+import { setLoading } from '../../Store/Loader';
 
 function SignIn() {
-  // state ues
+  // state use
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isBlurred, setIsBlurred] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   // navigate use
   const navigate = useNavigate();
+
+  // redux use
+  const dispatch = useDispatch();
 
   // functions
   const navigateBack = () => {
@@ -33,20 +37,21 @@ function SignIn() {
   const onEmailTextInputBlurred = () => {
     setIsBlurred(true);
   };
-
+  const handleForgotPasswordPressed = () => {
+    navigate(ROUTES_CONFIG.FORGOT_PASSWORD.path);
+  };
   const signInPressed = async () => {
     setIsSubmitted(true);
-    setIsLoading(true);
     if (!isValidEmail(email) || !password) {
-      setIsLoading(false);
       return;
     }
+    dispatch(setLoading(true));
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       // console.log('error while signing user in', error);
     }
-    setIsLoading(false);
+    dispatch(setLoading(false));
   };
 
   return (
@@ -57,6 +62,7 @@ function SignIn() {
           <img src={LeftArrow} alt="Back button" className="size-6 m-6" />
         </button>
         <div className="flex flex-col">
+          <p className="text-3xl font-semibold text-center mb-10">Sign In</p>
           <div className="rounded-lg border border-gray-300 my-2 mx-12 ">
             <CustomTextInput
               placeholder="Email Address"
@@ -78,6 +84,11 @@ function SignIn() {
               onChange={onChangePassword}
             />
           </div>
+          <button type="button" onClick={handleForgotPasswordPressed}>
+            <p className="text-customPurple text-right mx-12">
+              Forgot Password?
+            </p>
+          </button>
           <div className="mx-12">
             {!password && isSubmitted ? (
               <ErrorText text="Please enter your password." />
@@ -85,11 +96,7 @@ function SignIn() {
           </div>
           <SocialLogins />
           <div className="mx-12 my-12">
-            <CustomButton
-              text="Continue"
-              onPress={signInPressed}
-              isLoading={isLoading}
-            />
+            <CustomButton text="Continue" onPress={signInPressed} />
           </div>
         </div>
       </div>

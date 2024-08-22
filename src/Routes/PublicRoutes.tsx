@@ -5,6 +5,7 @@ import SignIn from '../Views/SignIn';
 import LandingPage from '../Views/LandingPage';
 import { ONBOARDING_ROUTES } from './OnboardingRoutes';
 import Create from '../Views/Create';
+import ForgotPassword from '../Views/ForgotPassword';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
@@ -17,6 +18,11 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
     path: `${ROUTES_CONFIG.SIGN_IN.path}`,
     title: ROUTES_CONFIG.SIGN_IN.title,
     element: <SignIn />,
+  },
+  {
+    path: `${ROUTES_CONFIG.FORGOT_PASSWORD.path}`,
+    title: ROUTES_CONFIG.FORGOT_PASSWORD.title,
+    element: <ForgotPassword />,
   },
   {
     path: `${ROUTES_CONFIG.REGISTER.path}`,

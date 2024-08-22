@@ -8,6 +8,7 @@ import AppLayout from '../Components/Layouts/AppLayout';
 import type { RootState } from '../Store';
 import { auth } from '../Utils/firebaseConfig';
 import { resetUserData, updateUserData } from '../Store/User';
+import CustomLoader from '../Components/Molecules/CustomLoader/CustomLoader';
 
 function RootRouter() {
   // routes use
@@ -32,12 +33,12 @@ function RootRouter() {
   }, [dispatch]);
 
   return (
-    <>
+    <CustomLoader>
       <DocumentTitle isAuthenticated={isAuthenticated} />
       <AppLayout isAuthenticated={isAuthenticated}>
         {id ? authenticated : guest}
       </AppLayout>
-    </>
+    </CustomLoader>
   );
 }
 

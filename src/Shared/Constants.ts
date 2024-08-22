@@ -35,6 +35,10 @@ export { default as LogOutIcon } from '../assets/svgs/logout.svg';
 export { default as SearchIcon } from '../assets/svgs/search.svg';
 export { default as FoodBowl } from '../assets/svgs/foodBowl.svg';
 export { default as Pencil } from '../assets/svgs/pencil.svg';
+export { default as SmileyBad } from '../assets/svgs/smileyBad.svg';
+export { default as SmileyGood } from '../assets/svgs/smileyGood.svg';
+export { default as Smiley } from '../assets/svgs/smiley.svg';
+export { default as GarbageCan } from '../assets/svgs/garbageCan.svg';
 
 // interests
 export { default as Fashion } from '../assets/svgs/Interests/Fashion.svg';
@@ -159,6 +163,7 @@ const STRING = {
 export { STRING };
 
 const ROUTES = {
+  FORGOT_PASSWORD: '/forgot-password',
   EDIT_PROFILE: '/edit-profile',
   LANDING_PAGE: '/',
   HOME: '/',
@@ -187,6 +192,10 @@ const ROUTES_CONFIG = {
   HOME: {
     path: ROUTES.HOME,
     title: 'HOME',
+  },
+  FORGOT_PASSWORD: {
+    path: ROUTES.FORGOT_PASSWORD,
+    title: 'Forgot Password',
   },
   EDIT_PROFILE: {
     path: ROUTES.EDIT_PROFILE,

@@ -1,49 +1,64 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { DragAndDropFilesProps } from './types';
-import CustomButton from '../../Atoms/CustomButton';
+import ToastError from '../../Atoms/ToastError';
 
-function DragAndDropFiles({ fileTypesAllowed }: DragAndDropFilesProps) {
-  // state es
-  const [story, setStory] = useState<string>();
-
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    // Handle the uploaded files here
-    const file = acceptedFiles[0];
-    if (file) {
-      setStory('customImage');
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target) {
-          if (typeof e.target.result === 'string') {
-            setStory(e.target.result);
-          }
+function DragAndDropFiles({
+  fileTypesAllowed,
+  photo,
+  setPhoto,
+  runOnDrop,
+}: Readonly<DragAndDropFilesProps>) {
+  // functions
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      // Handle the uploaded files here
+      const file = acceptedFiles[0];
+      if (file) {
+        if (setPhoto) {
+          setPhoto('customImage');
         }
-      };
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (e.target) {
+            if (typeof e.target.result === 'string') {
+              if (setPhoto) {
+                setPhoto(e.target.result);
+              }
+              (() => runOnDrop && runOnDrop(fileTypesAllowed))();
+            }
+          }
+        };
 
-      if (file.type.startsWith('image/')) {
-        reader.readAsDataURL(file);
+        if (file.type.startsWith('image/')) {
+          reader.readAsDataURL(file);
+        }
       }
-    }
-  }, []);
+    },
+    [setPhoto, runOnDrop, fileTypesAllowed]
+  );
 
-  const { isDragActive } = useDropzone({ onDrop });
+  const { isDragActive, getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept:
+      fileTypesAllowed === 'image'
+        ? { 'image/jpeg': ['.jpeg'], 'image/png': ['.png'] }
+        : { 'video/*': [] },
+    onDropRejected: () => {
+      ToastError('File type invalid');
+    },
+  });
 
   return (
     <div>
-      {!story ? (
+      {!photo ? (
         <div
-          // {...getRootProps()}
-          className={`border-2 border-dashed rounded p-6 text-center w-80 h-96 flex justify-center items-center ${
+          {...getRootProps()}
+          className={`border-2 border-dashed rounded p-6 text-center w-96 w-80 h-96 flex justify-center items-center ${
             isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
           }`}
         >
-          <input
-            multiple={false}
-            accept={fileTypesAllowed}
-            // {...getInputProps()}
-            className="w-80"
-          />
+          <input multiple={false} {...getInputProps()} className="w-80" />
           {isDragActive ? (
             <p>Drop the files here...</p>
           ) : (
@@ -55,18 +70,9 @@ function DragAndDropFiles({ fileTypesAllowed }: DragAndDropFilesProps) {
         </div>
       ) : (
         <div>
-          {story ? (
-            <div>
-              <img
-                src={story}
-                alt="uploaded story"
-                className="max-h-[600px] max-w-[900px] border"
-              />
-              <div className="mb-4 mt-12">
-                <CustomButton text="Upload" />
-              </div>
-            </div>
-          ) : null}
+          <div className="w-full flex justify-center size-96">
+            <img src={photo} alt="uploaded story" />
+          </div>
         </div>
       )}
     </div>

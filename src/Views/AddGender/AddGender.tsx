@@ -47,7 +47,7 @@ function AddGender() {
     } else {
       const reference = ref(storage, `media/profilePictures/${uid}/photo`);
 
-      await uploadString(reference, user.photo!);
+      await uploadString(reference, user.photo, 'data_url');
       url = await getDownloadURL(reference);
     }
 

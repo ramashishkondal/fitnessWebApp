@@ -55,7 +55,7 @@ function Drawer() {
             focusedLocation?.title === ROUTES_CONFIG.HOME.title
               ? 'bg-customPurpleLight'
               : 'bg-customGray100'
-          } p-2`}
+          } p-2 hover:bg-customGray300`}
         >
           <div className="flex flex-1 items-center">
             <img src={HomeIcon} alt="home" className="size-5" />
@@ -68,7 +68,7 @@ function Drawer() {
             focusedLocation?.title === ROUTES_CONFIG.COMMUNITY.title
               ? 'bg-customPurpleLight'
               : 'bg-customGray100'
-          } p-2`}
+          } p-2 hover:bg-customGray300`}
         >
           <div className="flex flex-1 items-center">
             <img src={CommunityIcon} alt="home" className="size-5" />
@@ -93,7 +93,7 @@ function Drawer() {
         </button>
         <button
           type="button"
-          className="pl-6 p-2 my-0.5"
+          className="pl-6 p-2 my-0.5  hover:bg-red-100 rounded-md"
           onClick={showLogoutModal}
         >
           <div className="flex flex-1 items-center">

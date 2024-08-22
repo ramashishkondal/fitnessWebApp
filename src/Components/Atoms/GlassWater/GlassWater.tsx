@@ -11,7 +11,7 @@ function GlassWater({
   isFilled,
 }: Readonly<GlassWaterProps>) {
   return (
-    <div>
+    <div className="relative">
       {isFilled ? (
         <button type="button" onClick={handlePressDelete}>
           <img

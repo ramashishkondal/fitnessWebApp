@@ -1,22 +1,45 @@
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { RootState } from '../../Store';
 import { Pencil } from '../../Shared/Constants';
 import CustomModal from '../../Components/Molecules/CustomModal';
+import ChangeUserInfo from '../../Components/Molecules/ChangeUserInfo';
+import ChangeUserPreferences from '../../Components/Molecules/ChangeUserPreferences';
+import ChangeUserInterests from '../../Components/Molecules/ChangeUserInterests';
+import { EditModalType } from './types';
 
 function EditProfile() {
   // state use
-  const [editModalType, setEditModalType] = useState<'changeUserInfo' | null>(
-    null
-  );
+  const [editModalType, setEditModalType] = useState<EditModalType>(null);
 
   // redux use
   const { firstName, lastName, email, gender, photo, preferences, interests } =
     useSelector((state: RootState) => state.user);
 
   // function
-  const closeEditModal = () => {
+  const closeEditModal = useCallback(() => {
     setEditModalType(null);
+  }, []);
+
+  // memo use
+  const modalContent = useMemo(() => {
+    if (editModalType === 'changeUserInfo') {
+      return <ChangeUserInfo closeModal={closeEditModal} />;
+    }
+    if (editModalType === 'changeUserPreferences') {
+      return <ChangeUserPreferences closeModal={closeEditModal} />;
+    }
+    if (editModalType === 'changeUserInterests') {
+      return <ChangeUserInterests closeModal={closeEditModal} />;
+    }
+    return null;
+  }, [editModalType, closeEditModal]);
+
+  // functions
+  const setModalType = (type: EditModalType) => {
+    return () => {
+      setEditModalType(type);
+    };
   };
 
   return (
@@ -25,12 +48,16 @@ function EditProfile() {
         isModalShown={editModalType !== null}
         closeModal={closeEditModal}
       >
-        <p>1</p>
+        {modalContent}
       </CustomModal>
       <div className="p-12">
         <div className="flex justify-between">
           <p className="mt-2">User Info</p>
-          <button type="button" className="bg-customGray400 rounded-full p-2">
+          <button
+            type="button"
+            className="bg-customGray400 rounded-full p-2"
+            onClick={setModalType('changeUserInfo')}
+          >
             <img src={Pencil} alt="edit user info" className="size-4" />
           </button>
         </div>
@@ -59,7 +86,16 @@ function EditProfile() {
             </div>
           </div>
         </div>
-        <p className="mt-8">Preferences</p>
+        <div className="flex justify-between">
+          <p className="mt-2">Preferences</p>
+          <button
+            type="button"
+            className="bg-customGray400 rounded-full p-2"
+            onClick={setModalType('changeUserPreferences')}
+          >
+            <img src={Pencil} alt="edit user info" className="size-4" />
+          </button>
+        </div>
         <div className="shadow-md rounded-md p-3 my-2">
           <div className="flex text-customPurple">
             {preferences
@@ -74,7 +110,16 @@ function EditProfile() {
               ))}
           </div>
         </div>
-        <p className="mt-8">Interests</p>
+        <div className="flex justify-between">
+          <p className="mt-2">Interests</p>
+          <button
+            type="button"
+            className="bg-customGray400 rounded-full p-2"
+            onClick={setModalType('changeUserInterests')}
+          >
+            <img src={Pencil} alt="edit user info" className="size-4" />
+          </button>
+        </div>
         <div className="shadow-md rounded-md p-3 my-2">
           <div className="flex text-customPurple">
             {interests

@@ -7,13 +7,15 @@ function AddStory() {
   // state use
   const [isMenuShown, setIsMenuShown] = useState(false);
   const [isAddStoryModalShown, setIsAddStoryModalShown] = useState(false);
+  const [fileTypesAllowed, setFileTypesAllowed] = useState<'image' | 'video'>(
+    'image'
+  );
 
   // ref use
   const inputFileRef = useRef<HTMLInputElement>(null);
   const storyFile = useRef<string>();
 
   // functions
-
   const handleFileChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
@@ -31,20 +33,28 @@ function AddStory() {
       }
     }
   };
-  const showAddStoryModal = () => {
+
+  const showAddStoryModalImage = () => {
     setIsMenuShown(false);
+    setFileTypesAllowed('image');
+    setIsAddStoryModalShown(true);
+  };
+  const showAddStoryModalVideo = () => {
+    setIsMenuShown(false);
+    setFileTypesAllowed('video');
     setIsAddStoryModalShown(true);
   };
   const closeAddStoryModal = () => {
     setIsAddStoryModalShown(false);
   };
+
   return (
     <>
       <CustomModal
         isModalShown={isAddStoryModalShown}
         closeModal={closeAddStoryModal}
       >
-        <DragAndDropFiles fileTypesAllowed="image/jpeg" />
+        <DragAndDropFiles fileTypesAllowed={fileTypesAllowed} />
       </CustomModal>
       <div className="relative">
         <input
@@ -68,14 +78,14 @@ function AddStory() {
               <button
                 type="button"
                 className="hover:bg-customGray200 p-2 rounded-md text-left"
-                onClick={showAddStoryModal}
+                onClick={showAddStoryModalImage}
               >
                 <p>Photo</p>
               </button>
               <button
                 type="button"
                 className="hover:bg-customGray200 p-2 rounded-md text-left"
-                onClick={showAddStoryModal}
+                onClick={showAddStoryModalVideo}
               >
                 <p>Video</p>
               </button>
