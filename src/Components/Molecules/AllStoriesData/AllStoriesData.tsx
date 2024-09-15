@@ -7,8 +7,7 @@ import StoryData from '../../StoryData';
 function AllStoriesData() {
   // state use
   const [userStories, setUserStories] = useState<Story[]>([]);
-  // const [userIndex, setUserIndex] = useState(0);
-  // const [storyIndex, setStoryIndex] = useState(0);
+
 
   // effect use
   useEffect(() => {
