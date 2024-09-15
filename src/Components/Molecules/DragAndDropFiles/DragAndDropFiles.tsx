@@ -54,7 +54,7 @@ function DragAndDropFiles({
       {!photo ? (
         <div
           // {...getRootProps()}
-          className={`border-2 border-dashed rounded p-6 text-center w-96 w-80 h-96 flex justify-center items-center ${
+          className={`border-2 border-dashed rounded p-6 text-center w-96  h-96 flex justify-center items-center ${
             isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
           }`}
         >
