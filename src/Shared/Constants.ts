@@ -22,6 +22,7 @@ export { default as FacebookLogo } from '../assets/svgs/facebookLogo.svg';
 export { default as GlassWaterFull } from '../assets/svgs/glassWater.svg';
 export { default as GlassWaterEmpty } from '../assets/svgs/glassWaterEmpty.svg';
 export { default as Plus } from '../assets/svgs/plus.svg';
+export { default as PlusWhite } from '../assets/svgs/plusWhite.svg';
 export { default as HeartLiked } from '../assets/svgs/heartLiked.svg';
 export { default as HeartUnLiked } from '../assets/svgs/heartUnLiked.svg';
 export { default as CommentDialog } from '../assets/svgs/comment.svg';

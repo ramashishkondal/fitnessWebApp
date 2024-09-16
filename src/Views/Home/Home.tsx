@@ -11,10 +11,11 @@ import { resetMealDataItemsTo } from '../../Store/MealData';
 
 import MealChartAndStats from '../../Components/Molecules/MealChartAndStats';
 import AddFoodItems from '../../Components/Molecules/AddFoodItems';
+import GreetingLabel from '../../Components/Molecules/GreetingLabel';
+import { PlusWhite } from '../../Shared/Constants';
 
 function Home() {
   // state use
-  const [greeting, setGreeting] = useState('');
   const [isAddFoodItemsModalShown, setIsAddFoodItemsModalShown] =
     useState(false);
 
@@ -24,18 +25,6 @@ function Home() {
     (state: RootState) => state.user
   );
 
-  // Update greeting based on time
-  const updateGreeting = () => {
-    const currentHour = new Date().getHours();
-    if (currentHour < 12) {
-      setGreeting('morning');
-    } else if (currentHour < 18) {
-      setGreeting('afternoon');
-    } else {
-      setGreeting('evening');
-    }
-  };
-
   const showAddFoodItemsModal = () => {
     setIsAddFoodItemsModalShown(true);
   };
@@ -43,16 +32,11 @@ function Home() {
     setIsAddFoodItemsModalShown(false);
   };
 
-  useEffect(() => {
-    updateGreeting();
-    const interval = setInterval(updateGreeting, 60000); // Check every minute
-    return () => clearInterval(interval); // Clear interval on component unmount
-  }, []);
-
+  // effect use
   useEffect(() => {
     const healthDoc = doc(db, firebaseDB.collections.healthData, id!);
 
-    const unsubscribe = onSnapshot(healthDoc, (snapshot) => {
+    const unsubscribeHealthSnapshot = onSnapshot(healthDoc, (snapshot) => {
       const waterIntakeDataFromFirebase = snapshot.get(
         `${new Date().setHours(0, 0, 0, 0).toString()}.waterIntake`
       );
@@ -63,15 +47,9 @@ function Home() {
       }
       dispatch(updateHealthData({ waterIntake: waterIntakeDataFromFirebase }));
     });
-    return () => {
-      unsubscribe();
-    };
-  }, [dispatch, id]);
-
-  useEffect(() => {
     const mealDataDoc = doc(db, firebaseDB.collections.dailyMeals, id!);
 
-    const unsubscribe = onSnapshot(mealDataDoc, (snapshot) => {
+    const unsubscribeMealSnapshot = onSnapshot(mealDataDoc, (snapshot) => {
       const dailyMealsDataFromFirebase = snapshot.get(
         `${new Date().setHours(0, 0, 0, 0).toString()}`
       );
@@ -82,7 +60,8 @@ function Home() {
     });
 
     return () => {
-      unsubscribe();
+      unsubscribeMealSnapshot();
+      unsubscribeHealthSnapshot();
     };
   }, [dispatch, id]);
 
@@ -103,16 +82,22 @@ function Home() {
           />
         </button>
       </div>
-      <div>
-        <p className="text-4xl font-semibold">{`Good ${greeting}, ${firstName}`}</p>
+      <div className="flex justify-between p-3">
+        <GreetingLabel name={firstName} />
+        <button
+          type="button"
+          onClick={showAddFoodItemsModal}
+          className="flex pr-3 items-center border px-2 rounded-md bg-customPurple text-white"
+        >
+          <p>Add Meal</p>
+          <img src={PlusWhite} alt="add meal" className="size-4 ml-2" />
+        </button>
       </div>
-      <button type="button" onClick={showAddFoodItemsModal}>
-        Add Meal
-      </button>
       <div className="flex flex-1 flex-row">
         <div className="flex justify-center items-center mx-2 rounded-md shadow-md">
+          <div className="bg-red-600 w-full h-full " />
           <p className="text-vertical text-4xl p-2">Nutrition</p>
-          <p className="text-vertical text-customGray300 text-4xl mb-2 text-xl">
+          <p className="text-vertical text-customGray300 text-2xl mb-2 ">
             12 cal / 2500
           </p>
         </div>
@@ -124,7 +109,7 @@ function Home() {
         <div className="flex h-96 my-8">
           <div className="flex justify-center items-center mx-2 rounded-md shadow-md">
             <p className="text-vertical text-4xl p-2">Water Intake</p>
-            <p className="text-vertical text-customGray300 text-4xl mb-2 text-xl">
+            <p className="text-vertical text-customGray300 text-2xl mb-2 ">
               0 / 10
             </p>
           </div>
